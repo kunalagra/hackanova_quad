@@ -133,7 +133,9 @@ def getNews():
 @jwt_required()
 def get_details():
     data = request.get_json()
+    print(data)
     user = get_jwt_identity()
+    print(user)
     if data['registerer'] == 'patient':
         return json_util.dumps(patients.find_one({'email': user}))
     elif data['registerer'] == 'doctor':
