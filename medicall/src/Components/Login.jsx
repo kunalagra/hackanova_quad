@@ -5,6 +5,7 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "./Header";
 import { Link } from "react-router-dom";
+import httpClint from "../httpClint";
 
 const initialValues = {
   email: "",
@@ -22,9 +23,17 @@ const LogIn = () => {
 
   const isNonMobile = useMediaQuery("(min-width: 600px)");
 
-    const handleFormSubmit = (values) => {
-        console.log(values);
-    };
+  const handleFormSubmit = async (values) => {
+    console.log(values);
+    httpClint.post('/login', values).then((res) => {
+       if (res.status === 200) {
+            sessionStorage.setItem("token", res.data.token);
+            console.log(res.data.token);
+       }
+    }).catch((err) => {
+        console.log(err);
+    });
+};
 
   return (
     <Box m="20px auto" p="0 20px" maxWidth="700px" minHeight="85vh">

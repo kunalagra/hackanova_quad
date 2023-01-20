@@ -125,6 +125,13 @@ const Sidebar = () => {
               Other
             </Typography>
             <Item
+              title="Profile"
+              to="/profilepage"
+              icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
               title="About"
               to="/about"
               icon={<InfoOutlinedIcon />}
@@ -134,6 +141,13 @@ const Sidebar = () => {
             <Item
               title="Help"
               to="/help"
+              icon={<HelpOutlineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="FAQ"
+              to="/faq"
               icon={<HelpOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
