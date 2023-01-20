@@ -1,10 +1,42 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import CreateMeet from "../createMeet/CreateMeet";
 import { tokens } from "../../theme";
+import { useEffect, useState } from "react";
+import httpClint from "../../httpClint";
 
-const Dashboard = ( {isDoctor = false, details = {}} ) => {
+const Dashboard = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+
+    const loggedIn = localStorage.getItem("registerAs");
+
+    const isDoctor = loggedIn? loggedIn.toString() : "na";
+    const [details, setDetails] = useState([]);
+    // if(loggedIn){
+    //   httpClint.post("/details", {
+    //     "registerer": isDoctor,
+    //   })
+    //   .then((response) => {
+    //     setDetails(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // }
+    useEffect(() => {
+        httpClint.post("/details", {
+        "registerer": isDoctor,
+        })
+        .then((response) => {
+        setDetails(response.data);
+        })
+        .catch((error) => {
+        console.log(error);
+        });
+        // console.log(loggedIn, isDoctor, details)
+    }, [isDoctor]);
+    // console.log(isDoctor)
+
     // if(isDoctor){
     //     details.setItem("specialization","");
     //     details.setItem("address","");

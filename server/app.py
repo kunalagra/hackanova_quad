@@ -25,7 +25,7 @@ CORS(app, supports_credentials=True)
 
 
 client = pymongo.MongoClient("mongodb+srv://Deexith:Deexith@cluster0.w5geufm.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
-db = client.get_database('Company').users
+# db = client.get_database('Company').users
 doctor = client.get_database('Company').doctors
 patients = client.get_database('Company').patient
 
@@ -167,6 +167,8 @@ def get_details():
         return json_util.dumps(patients.find_one({'email': user}))
     elif data['registerer'] == 'doctor':
         return json_util.dumps(doctor.find_one({'email': user}))
+    else:
+        return jsonify({'message': 'Invalid registerAs'}), 400
     
 
 
