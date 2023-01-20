@@ -5,7 +5,11 @@ import Sidebar from "./Components/Sidebar";
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
 import NotFound from "./scenes/404";
- 
+import About from "./scenes/About";   
+import FAQ from "./Components/FAQ"; 
+import Help from "./Components/Help";
+import ProfilePage from "./scenes/Profile";
+
 function App() {
 
   const [theme, colorMode] = useMode();
@@ -20,7 +24,10 @@ function App() {
             <Routes>
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
-
+              <Route path="/about" element={<About />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="/profilepage" element={<ProfilePage />} />
               <Route path="/*" element={<NotFound />}/>
             </Routes>
           </main>
