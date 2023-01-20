@@ -7,6 +7,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import pymongo
+from bson import json_util
 import secrets
 from pickle import load
 # model = load(open('model.pkl', 'rb'))
@@ -124,6 +125,16 @@ def get_doctor():
     for doc in doctor.find():
         doctor_list.append({'id': doc['id'] ,'name': doc['name'], 'age': doc['age'], 'country': doc['country'], 'specialization': doc['specialization'], 'noOfAppointments': doc['noOfAppointments']})
     return doctor_list, 200
+
+@app.route('/details', methods=['POST'])
+@jwt_required()
+def get_doctor():
+    data = request.get_json()
+    user = get_jwt_identity()
+    if data['registerer'] == 'patient':
+        return json_util.dumps(patients.find_one({'email': user}))
+    elif data['registerer'] == 'doctor':
+        return json_util.dumps(doctor.find_one({'email': user}))
 
 if __name__ == "__main__":
     app.run(debug=True)
