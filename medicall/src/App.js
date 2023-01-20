@@ -11,6 +11,7 @@ import Topbar from "./Components/Topbar"
 import Dashboard from "./scenes/dashboard/Dashboard";
 import News from "./scenes/news/News";
 import Doctordetails from "./scenes/doctordetails/Doctordetails";
+import JitsiComponent from "./scenes/startMeet/createMeet";
  
 function App() {
 
@@ -26,12 +27,14 @@ function App() {
             <Topbar />
             <Routes>
               <Route path="/" element={ <Dashboard/>}/>
+              <Route path="/start" element={ <JitsiComponent />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
               <Route path="/about" element={<About />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/news" element={<News />} />
               <Route path="/details" element={<Doctordetails />} />
+
               <Route path="/*" element={<NotFound />}/>
             </Routes>
           </main>

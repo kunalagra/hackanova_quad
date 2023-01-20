@@ -9,6 +9,7 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 import pymongo
 from bson import json_util
 import secrets
+import time
 secret_key = secrets.token_hex(16)
 # example output, secret_key = 000d88cd9d90036ebdd237eb6b0db000
 
@@ -111,6 +112,7 @@ def register():
             else:
                 hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
                 data['password'] = hashed_password
+                data['meet'] = "na"
                 doctor.insert_one(data)
                 return jsonify({'message': 'User created successfully'}), 200
         else:
@@ -144,6 +146,38 @@ def getNews():
     data = client.get_database('Company').news.find()
     data = [x for x in data]    
     return json_util.dumps(data), 200
+
+@app.route('/gen-meet',methods=['GET'])
+def genMeet():
+    data = request.get_json()
+    t = int(time.time())
+    user = doctor.find_one({'email': data['email']})
+    payload = {"meet": str(t)}
+    doctor.update_one({'email': user['email']}, {'$set': payload})
+    return json_util.dumps(payload),200
+
+@app.route('/fetchmeets',methods=['GET'])
+@jwt_required()
+def fetM():
+    user = get_jwt_identity()
+    data = doctor.find_one({'email': user})
+    print(data)
+    return json_util.dumps(data['meet']),200
+
+
+
+@app.route('/del-meet',methods=['GET'])
+def delMeet():
+    data = request.get_json()
+    payload = {"meet": "na"}
+    user = doctor.find_one({'email': data['email']})
+    doctor.update_one({'email': user['email']}, {'$set': payload})
+
+    return jsonify({'message': 'Deleted Meet'}),200
+
+
+
+
 
 
 @app.route('/news',methods=['POST'])
