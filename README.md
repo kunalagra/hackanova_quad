@@ -6,3 +6,11 @@ Kunal Agrawal <br />
 Aman Tiwari <br />
 Ganesh Utla <br />
 Deexith Madas 
+
+
+Front-end:
+- ReactJS
+
+Backend:
+- Flask
+- MongoDB
