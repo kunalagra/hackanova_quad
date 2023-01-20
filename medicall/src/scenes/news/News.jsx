@@ -1,11 +1,26 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import Header from "../../Components/Header";
 import { tokens } from "../../theme";
+import { useEffect, useState } from "react";
+import httpClint from "../../httpClint";
 
 const News = ({ isDoctor = false}) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const news = [{"title":"abcd", "para":"dfsdfsf"}, {"title":"abcsdcsdfsd","para":"dsfkhdfshd"}];
+    const [news,setnews] = useState([]);
+
+    useEffect(() => {
+        httpClint.get("/news")
+        .then((response) => {
+            setnews(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, []);
+
+    // dispay date, author, body, title with format
+
     return (
         <Box m="20px">
             <Header title="News" subtitle="Get the lastest news!!"/>
@@ -24,9 +39,21 @@ const News = ({ isDoctor = false}) => {
                     </Typography>
                     <Typography
                         variant="h5"
-                        color={colors.grey[100]}
-                    >
-                        {d.title}
+                        color="secondary"
+                        >
+                        {d.date}
+                    </Typography>
+                    <Typography
+                        variant="h5"
+                        color="secondary"
+                        >
+                        {d.body}
+                    </Typography>
+                    <Typography
+                        variant="h5"
+                        color="secondary"
+                        >
+                        {d.author}
                     </Typography>
                 </li>
             )}

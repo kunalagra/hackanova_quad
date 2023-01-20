@@ -48,7 +48,7 @@ def login():
     if var:
         if bcrypt.check_password_hash(var['password'], data['password']):
             access_token = create_access_token(identity=data['email'])
-            return jsonify({'message': 'User logged in successfully', 'access_token': access_token, 'registerAs': var['registerer']}), 200
+            return jsonify({'message': 'User logged in successfully', 'access_token': access_token, 'registerAs': var['registerer'],'firstName': var['firstName'],'lastName': var['lastName']}), 200
         else:
             return jsonify({'message': 'Invalid password'}), 400
     else:
