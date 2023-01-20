@@ -2,7 +2,7 @@ import { TextField, Box, Button } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Header from "../../Components/Header";
+import Header from "./Header";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -13,16 +13,14 @@ import httpClint from "../../httpClint";
 
 const phoneRegExp = /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
-// const psswdRegExp = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$/;
-
 const initialValues = {
-  registerer: "patient",
+    registerer: "patient",
   firstName: "",
   lastName: "",
-  gender: "male",
+  password: "",
   phone: "",
   email: "",
-  password: "",
+  gender: "male",
 };
 
 const checkoutSchema = yup.object().shape({
@@ -69,13 +67,14 @@ const SignUp = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 2" },
               }}
             >
-                 <FormControl
+              <FormControl
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.registerer}
-                sx={{ gridColumn: "span 2" }}
+                sx={{gridColumn: "span 2"}}
+                required
               >
-                <FormLabel>Register as </FormLabel>
+                <FormLabel>Register as</FormLabel>
                 <RadioGroup row name="registerer">
                   <FormControlLabel
                     value="patient"
@@ -119,6 +118,7 @@ const SignUp = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.gender}
+                required
               >
                 <FormLabel>Gender</FormLabel>
                 <RadioGroup row name="gender">
@@ -182,7 +182,7 @@ const SignUp = () => {
             <Box display="flex" justifyContent="start" mt="20px">
               <Button
                 type="submit"
-                color="primary"
+                color="secondary"
                 variant="contained"
                 sx={{ fontWeight: "bold" }}
               >
