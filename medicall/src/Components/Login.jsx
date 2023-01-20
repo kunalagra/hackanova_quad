@@ -1,11 +1,10 @@
 import { TextField, Box, Button, Typography, useTheme } from "@mui/material";
-import { tokens } from "../../theme";
+import { tokens } from "../theme";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Header from "../../Components/Header";
+import Header from "./Header";
 import { Link } from "react-router-dom";
-// import httpClint from "../httpClint";
 
 const initialValues = {
   email: "",
@@ -23,16 +22,8 @@ const LogIn = () => {
 
   const isNonMobile = useMediaQuery("(min-width: 600px)");
 
-    const handleFormSubmit = async (values) => {
+    const handleFormSubmit = (values) => {
         console.log(values);
-        // httpClint.post('/login', values).then((res) => {
-        //    if (res.status === 200) {
-        //         sessionStorage.setItem("token", res.data.token);
-        //         console.log(res.data.token);
-        //    }
-        // }).catch((err) => {
-        //     console.log(err);
-        // });
     };
 
   return (
