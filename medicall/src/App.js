@@ -10,7 +10,7 @@ import FAQ from "./Components/FAQ";
 import Topbar from "./Components/Topbar"
 import Dashboard from "./scenes/dashboard/Dashboard";
 import News from "./scenes/news/News";
-// import Doctordetails from "./scenes/doctordetails/Doctordetails";
+import Doctordetails from "./Components/Doctordetails";
 import JitsiComponent from "./scenes/startMeet/createMeet";
 import HomePage from "./DieseasePredictor/components/HomePage";
  

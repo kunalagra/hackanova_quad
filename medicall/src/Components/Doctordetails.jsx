@@ -62,7 +62,11 @@ const DoctorDetails = () => {
                     /* and other goodies */
                 }) => (
                     <form onSubmit={handleSubmit}>
-                        <Box mb="30px">
+                        <Box mb="30px"
+                            sx={{
+                                    "& > div": { gridColumn: isNonMobile ? undefined : "span 2" },
+              }}
+                        >
                             <FormControl component="fieldset">
                                 <FormLabel component="legend">Languages</FormLabel>
                                 <RadioGroup
