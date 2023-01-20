@@ -51,6 +51,7 @@ const Sidebar = () => {
           color: "#6870fa !important",
         },
       }}
+      minHeight="85vh"
     >
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
@@ -115,16 +116,24 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            {/* Other Information */}
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Other
+            </Typography>
             <Item
               title="About"
-              to="/"
+              to="/about"
               icon={<InfoOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Help"
-              to="/"
+              to="/help"
               icon={<HelpOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
