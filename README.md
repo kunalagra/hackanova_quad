@@ -1,8 +1,8 @@
 # hackanova_quad
 Quad's Team repo for Hacknova 2.0
 
-Team Memebers - 
-Kunal Agrawal
-Aman Tiwari
-Ganesh Utla
-Deexith Madas
+Team Memebers - <br />
+Kunal Agrawal <br />
+Aman Tiwari <br />
+Ganesh Utla <br />
+Deexith Madas 
