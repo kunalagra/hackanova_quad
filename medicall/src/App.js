@@ -38,6 +38,8 @@ function App() {
               <Route path="/model" element={<HomePage />} />
               <Route path="/details" element={<Doctordetails />} />
               <Route path="/postnews" element={<PostNews />} />
+              {/* <Route path="/details" element={<Doctordetails />} /> */}
+
               <Route path="/*" element={<NotFound />}/>
             </Routes>
           </main>
