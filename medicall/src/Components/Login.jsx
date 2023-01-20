@@ -27,8 +27,9 @@ const LogIn = () => {
     console.log(values);
     httpClint.post('/login', values).then((res) => {
        if (res.status === 200) {
-            sessionStorage.setItem("token", res.data.token);
-            console.log(res.data.token);
+            sessionStorage.setItem("token", res.data.access_token);
+            sessionStorage.setItem("registerAs", res.data.registerAs);
+            console.log(res.data);
        }
     }).catch((err) => {
         console.log(err);
