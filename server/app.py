@@ -125,9 +125,19 @@ def get_doctor():
 @app.route('/news',methods=['GET'])
 def getNews():
     data = client.get_database('Company').news.find()
-    data = [x for x in data]
-    
+    data = [x for x in data]    
     return json_util.dumps(data), 200
+
+
+@app.route('/news',methods=['POST'])
+def addNews():
+    data = request.get_json()
+    if data['registerer'] == 'doctor':
+        data.pop('registerer')
+        news = client.get_database('Company').news.insert_one(data)
+        return jsonify({'message': 'User created successfully'}), 200
+    else:
+        return jsonify({'message': 'Invalid registerAs'}), 400
 
 @app.route('/details', methods=['POST'])
 @jwt_required()
