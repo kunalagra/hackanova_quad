@@ -119,10 +119,15 @@ def profile():
 
 @app.route('/doctor', methods=['GET'])
 def get_doctor():
-    doctor_list = []
-    for doc in doctor.find():
-        doctor_list.append({'id': doc['id'] ,'name': doc['name'], 'age': doc['age'], 'country': doc['country'], 'specialization': doc['specialization'], 'noOfAppointments': doc['noOfAppointments']})
-    return doctor_list, 200
+    data = [x for x in doctor.find()]
+    return json_util.dumps(data), 200
+
+@app.route('/news',methods=['GET'])
+def getNews():
+    data = client.get_database('Company').news.find()
+    data = [x for x in data]
+    
+    return json_util.dumps(data), 200
 
 @app.route('/details', methods=['POST'])
 @jwt_required()
