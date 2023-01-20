@@ -10,6 +10,7 @@ import pymongo
 from bson import json_util
 import secrets
 import time
+from datetime import datetime
 secret_key = secrets.token_hex(16)
 # example output, secret_key = 000d88cd9d90036ebdd237eb6b0db000
 
@@ -183,12 +184,10 @@ def delMeet():
 @app.route('/news',methods=['POST'])
 def addNews():
     data = request.get_json()
-    if data['registerer'] == 'doctor':
-        data.pop('registerer')
-        news = client.get_database('Company').news.insert_one(data)
-        return jsonify({'message': 'User created successfully'}), 200
-    else:
-        return jsonify({'message': 'Invalid registerAs'}), 400
+    data['date'] = datetime.today().strftime('%Y-%m-%d')
+    client.get_database('Company').news.insert_one(data)
+    return jsonify({'message': 'News Added'}), 200
+    
 
 @app.route('/details', methods=['POST'])
 @jwt_required()
