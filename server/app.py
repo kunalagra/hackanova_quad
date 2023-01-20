@@ -35,11 +35,7 @@ jwt = JWTManager(app)
 @app.before_request
 def before_request():
     if request.method == 'OPTIONS':
-        resp = make_response()
-        resp.headers['Access-Control-Allow-Origin'] = '*'
-        resp.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
-        resp.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-        return resp
+        return Response()
 
 @app.route('/login', methods=['POST'])
 def login():
