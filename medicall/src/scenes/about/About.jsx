@@ -12,7 +12,7 @@ const About = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
- if (sessionStorage.getItem("token") === null || sessionStorage.getItem("token") === undefined) {
+ if (localStorage.getItem("token") === null || localStorage.getItem("token") === undefined) {
     window.location.href = "/login";
  }
 

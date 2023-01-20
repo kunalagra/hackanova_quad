@@ -28,8 +28,8 @@ const LogIn = () => {
     // console.log(values);
     httpClint.post('/login', values).then((res) => {
        if (res.status === 200) {
-            sessionStorage.setItem("token", res.data.access_token);
-            sessionStorage.setItem("registerAs", res.data.registerAs);
+            localStorage.setItem("token", res.data.access_token);
+            localStorage.setItem("registerAs", res.data.registerAs);
             window.location.href = "/"
        }
     }).catch((err) => {

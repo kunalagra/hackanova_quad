@@ -14,6 +14,7 @@ const Topbar = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const colorMode = useContext(ColorModeContext);
+    
 
     return (
         <Box display="flex" justifyContent="space-between" p={2}>
@@ -38,11 +39,13 @@ const Topbar = () => {
                         <NotificationsOutlinedIcon />
                     </Link>
                 </IconButton>
+
                 <IconButton>
                     <Link to="/login">
-                        <ExitToAppIcon onClick={sessionStorage.clear()}/>
+                        <ExitToAppIcon onClick = {()=>localStorage.clear()}/>
                     </Link>
                 </IconButton>
+
             </Box>
         </Box>
     )

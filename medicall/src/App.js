@@ -9,41 +9,11 @@ import About from "./scenes/about/About";
 import FAQ from "./Components/FAQ"; 
 import Topbar from "./Components/Topbar"
 import Dashboard from "./scenes/dashboard/Dashboard";
-import { useEffect, useState } from "react";
-import httpClint from "./httpClint";
 import News from "./scenes/news/News";
  
 function App() {
 
   const [theme, colorMode] = useMode();
-  const loggedIn = sessionStorage.getItem("registerAs");
-
-  const isDoctor = loggedIn? loggedIn.toString() : "na";
-  const [details, setDetails] = useState([]);
-  // if(loggedIn){
-  //   httpClint.post("/details", {
-  //     "registerer": isDoctor,
-  //   })
-  //   .then((response) => {
-  //     setDetails(response.data);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // }
-  useEffect(() => {
-    httpClint.post("/details", {
-      "registerer": isDoctor,
-    })
-    .then((response) => {
-      setDetails(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-    // console.log(loggedIn, isDoctor, details)
-  }, [isDoctor]);
-  // console.log(isDoctor)
 
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -54,7 +24,7 @@ function App() {
           <main className="content">
             <Topbar />
             <Routes>
-              <Route path="/" element={ <Dashboard isDoctor={isDoctor==="doctor"} details={details}/>}/>
+              <Route path="/" element={ <Dashboard/>}/>
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
               <Route path="/about" element={<About />} />
