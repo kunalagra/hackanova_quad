@@ -35,9 +35,7 @@ def login():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}), 400
     data = request.get_json()
-    print(data)
     var = patients.find_one({'email': data['email']})
-    print(var)
     if var:
         if bcrypt.check_password_hash(var['password'], data['password']):
             access_token = create_access_token(identity=data['email'])
@@ -46,7 +44,6 @@ def login():
             return jsonify({'message': 'Invalid password'}), 400
     else:
         var = doctor.find_one({'email': data['email']})
-        print(var)
         if var:
             if bcrypt.check_password_hash(var['password'], data['password']):
                 access_token = create_access_token(identity=data['email'])
@@ -72,11 +69,6 @@ def patient_details():
     return jsonify({'message': 'Invalid username or password'}), 401
 
 
-@app.route('/login/doctor', methods=['POST'])
-def loginD():
-    if not request.is_json:
-        return jsonify({"msg": "Missing JSON in request"}), 400
-    data = request.get_json()
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -119,7 +111,11 @@ def profile():
 
 @app.route('/doctor', methods=['GET'])
 def get_doctor():
-    data = [x for x in doctor.find()]
+    data = []
+    for x in doctor.find():
+        if 'status' in x:
+            if x['status']=="Online":
+                data.append(x)
     return json_util.dumps(data), 200
 
 @app.route('/news',methods=['GET'])
