@@ -118,6 +118,7 @@ export const tokens = (mode) => ({
     ),
 });
 
+// Theme Settings
 export const themeSettings = (mode) => {
     const colors = tokens(mode);
 
@@ -195,6 +196,7 @@ export const themeSettings = (mode) => {
     };
 };
 
+// context for colormode
 export const ColorModeContext = createContext({
     toggleColorMode: () => {}
 });
@@ -215,3 +217,4 @@ export const useMode = () => {
 
     return [theme, colorMode];
 }
+
