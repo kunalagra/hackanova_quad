@@ -9,8 +9,6 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 import pymongo
 from bson import json_util
 import secrets
-from pickle import load
-model = load(open('model.pkl', 'rb'))
 secret_key = secrets.token_hex(16)
 # example output, secret_key = 000d88cd9d90036ebdd237eb6b0db000
 
@@ -128,13 +126,17 @@ def get_doctor():
 
 @app.route('/details', methods=['POST'])
 @jwt_required()
-def get_doctor():
+def get_details():
     data = request.get_json()
     user = get_jwt_identity()
     if data['registerer'] == 'patient':
         return json_util.dumps(patients.find_one({'email': user}))
     elif data['registerer'] == 'doctor':
         return json_util.dumps(doctor.find_one({'email': user}))
+    
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
