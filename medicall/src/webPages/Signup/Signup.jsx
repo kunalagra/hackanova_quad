@@ -8,6 +8,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import httpClint from "../../httpClint";
 
 
 const phoneRegExp = /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
@@ -37,14 +38,9 @@ const SignUp = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
 
   const handleFormSubmit = async (values) => {
-    // console.log(values);
-    //   const { data } = await httpClint.post('/register', values).then((res) => {
-    //       window.location = "/login";
-    //       console.log(res);
-    //   }).catch((err) => {
-    //       console.log(err);
-    //   });
-      console.log(values);
+    console.log(values);
+    const { data } = await httpClint.post("/register", values);
+    console.log(data);
   };
 
   return (
