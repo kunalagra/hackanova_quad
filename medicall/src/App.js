@@ -10,6 +10,7 @@ import FAQ from "./Components/FAQ";
 import Topbar from "./Components/Topbar"
 import Dashboard from "./scenes/dashboard/Dashboard";
 import News from "./scenes/news/News";
+import Doctordetails from "./scenes/doctordetails/Doctordetails";
  
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/news" element={<News />} />
+              <Route path="/details" element={<Doctordetails />} />
               <Route path="/*" element={<NotFound />}/>
             </Routes>
           </main>
