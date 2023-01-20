@@ -8,6 +8,8 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+import MedicationIcon from '@mui/icons-material/Medication';
 
 // const lname = localStorage.getItem("lastname");
 // const Lname = lname? lname.toString() : "Lastname";
@@ -121,6 +123,21 @@ const Sidebar = ({Lname,Fname}) => {
               selected={selected}
               setSelected={setSelected}
             />
+            {/* MODEL */}
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Model
+            </Typography>
+            <Item
+              title="Disease Prediction"
+              to="/model"
+              icon={<PrecisionManufacturingIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             {/* Other Information */}
             <Typography
               variant="h6"
@@ -140,6 +157,21 @@ const Sidebar = ({Lname,Fname}) => {
               title="FAQ"
               to="/faq"
               icon={<HelpOutlineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            {/* SHOP */}
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Shop
+            </Typography>
+            <Item
+              title="Buy Medicines"
+              to="/medicines"
+              icon={<MedicationIcon />}
               selected={selected}
               setSelected={setSelected}
             />
