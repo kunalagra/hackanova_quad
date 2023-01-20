@@ -1,5 +1,5 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import { tokens } from "../theme";
+import { tokens } from "../../theme";
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 const NotFound = () => {

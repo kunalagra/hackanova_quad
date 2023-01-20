@@ -16,7 +16,6 @@ import {
   MDBListGroup,
   MDBListGroupItem
 } from 'mdb-react-ui-kit';
-import { withTheme } from '@emotion/react';
 import "./Profile.css";
 
 export default function ProfilePage() {
@@ -196,7 +195,7 @@ export default function ProfilePage() {
                     </MDBProgress>
                   </MDBCardBody>
                 </MDBCard>
-              </MDBCol>
+              </MDBCol> 
             </MDBRow>
           </MDBCol>
         </MDBRow>
