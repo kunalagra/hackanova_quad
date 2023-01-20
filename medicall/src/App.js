@@ -12,6 +12,7 @@ import Dashboard from "./scenes/dashboard/Dashboard";
 import { useEffect, useState } from "react";
 import httpClint from "./httpClint";
 import News from "./scenes/news/News";
+import JitsiComponent from "./scenes/startMeet/createMeet";
  
 function App() {
 
@@ -20,17 +21,6 @@ function App() {
 
   const isDoctor = loggedIn? loggedIn.toString() : "na";
   const [details, setDetails] = useState([]);
-  // if(loggedIn){
-  //   httpClint.post("/details", {
-  //     "registerer": isDoctor,
-  //   })
-  //   .then((response) => {
-  //     setDetails(response.data);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // }
   useEffect(() => {
     httpClint.post("/details", {
       "registerer": isDoctor,
@@ -55,11 +45,13 @@ function App() {
             <Topbar />
             <Routes>
               <Route path="/" element={ <Dashboard isDoctor={isDoctor==="doctor"} details={details}/>}/>
+              <Route path="/start" element={ <JitsiComponent />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
               <Route path="/about" element={<About />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/news" element={<News />} />
+
               <Route path="/*" element={<NotFound />}/>
             </Routes>
           </main>
