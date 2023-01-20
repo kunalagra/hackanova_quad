@@ -7,14 +7,13 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const Topbar = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const colorMode = useContext(ColorModeContext);
-    const navigate = useNavigate();
 
     return (
         <Box display="flex" justifyContent="space-between" p={2}>
@@ -35,13 +34,14 @@ const Topbar = () => {
                         ) }
                 </IconButton>
                 <IconButton>
-                    <NotificationsOutlinedIcon />
+                    <Link to="/news">
+                        <NotificationsOutlinedIcon />
+                    </Link>
                 </IconButton>
                 <IconButton>
-                    <ExitToAppIcon onClick={() => {
-                        sessionStorage.clear();
-                        navigate("/login");
-                    }}/>
+                    <Link to="/login">
+                        <ExitToAppIcon onClick={sessionStorage.clear()}/>
+                    </Link>
                 </IconButton>
             </Box>
         </Box>

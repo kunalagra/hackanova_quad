@@ -2,9 +2,13 @@ import { Box, Typography, useTheme } from "@mui/material";
 import CreateMeet from "../createMeet/CreateMeet";
 import { tokens } from "../../theme";
 
-const Dashboard = ( {isDoctor = false} ) => {
+const Dashboard = ( {isDoctor = false, details = {}} ) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    // if(isDoctor){
+    //     details.setItem("specialization","");
+    //     details.setItem("address","");
+    // }
     return (
         <Box m="20px" minHeight="85vh">
             {
@@ -34,7 +38,7 @@ const Dashboard = ( {isDoctor = false} ) => {
                                     variant="h4"
                                     color={colors.grey[100]}
                                 >
-                                    ABC
+                                    {details.firstName + ' ' + details.lastName}
                                 </Typography>
                             </Box>
                             <Box display="flex" alignItems="center" margin="20px" width="350px">
@@ -49,7 +53,7 @@ const Dashboard = ( {isDoctor = false} ) => {
                                     variant="h4"
                                     color={colors.grey[100]}
                                 >
-                                    example@ex.com
+                                    {details.email}
                                 </Typography>
                             </Box>
                             <Box display="flex" alignItems="center" margin="20px" width="350px">
@@ -64,7 +68,7 @@ const Dashboard = ( {isDoctor = false} ) => {
                                     variant="h4"
                                     color={colors.grey[100]}
                                 >
-                                    +12342352
+                                    {details.phone}
                                 </Typography>
                             </Box>
                             <Box display="flex" alignItems="center" margin="20px" width="350px">
@@ -79,7 +83,7 @@ const Dashboard = ( {isDoctor = false} ) => {
                                     variant="h4"
                                     color={colors.grey[100]}
                                 >
-                                    XYZ
+                                    {details.specialization}
                                 </Typography>
                             </Box>
                             <Box display="flex" alignItems="center" margin="20px" width="350px">
@@ -94,7 +98,7 @@ const Dashboard = ( {isDoctor = false} ) => {
                                     variant="h4"
                                     color={colors.grey[100]}
                                 >
-                                    sfljdfksjdfs
+                                    {details.address}
                                 </Typography>
                             </Box>
                         </Box>
