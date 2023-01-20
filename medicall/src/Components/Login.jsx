@@ -30,6 +30,8 @@ const LogIn = () => {
        if (res.status === 200) {
             localStorage.setItem("token", res.data.access_token);
             localStorage.setItem("registerAs", res.data.registerAs);
+            localStorage.setItem("firstName", res.data.firstName);
+            localStorage.setItem("lastName", res.data.lastName);
             window.location.href = "/"
        }
     }).catch((err) => {
