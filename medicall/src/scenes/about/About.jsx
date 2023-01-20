@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import { tokens } from "../theme";
-import Header from "../Components/Header";
+import { tokens } from "../../theme";
+import Header from "../../Components/Header";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';

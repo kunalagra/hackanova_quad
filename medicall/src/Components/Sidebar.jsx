@@ -125,23 +125,9 @@ const Sidebar = () => {
               Other
             </Typography>
             <Item
-              title="Profile"
-              to="/profilepage"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
               title="About"
               to="/about"
               icon={<InfoOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Help"
-              to="/help"
-              icon={<HelpOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -161,7 +147,6 @@ const Sidebar = () => {
               textAlign="center"
               sx={{ m: "15px" }}
             >
-              {" "}
               © 2022 MediCall | All Rights Reserved
             </Typography>
           )}

@@ -9,7 +9,7 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 import pymongo
 import secrets
 from pickle import load
-model = load(open('model.pkl', 'rb'))
+# model = load(open('model.pkl', 'rb'))
 secret_key = secrets.token_hex(16)
 # example output, secret_key = 000d88cd9d90036ebdd237eb6b0db000
 
@@ -42,7 +42,7 @@ def login():
     if var:
         if bcrypt.check_password_hash(var['password'], data['password']):
             access_token = create_access_token(identity=data['email'])
-            return jsonify({'message': 'User logged in successfully', 'access_token': access_token, 'regesterAs': var['registerer']}), 200
+            return jsonify({'message': 'User logged in successfully', 'access_token': access_token, 'registerAs': var['registerer']}), 200
         else:
             return jsonify({'message': 'Invalid password'}), 400
     else:
@@ -51,7 +51,7 @@ def login():
         if var:
             if bcrypt.check_password_hash(var['password'], data['password']):
                 access_token = create_access_token(identity=data['email'])
-                return jsonify({'message': 'User logged in successfully', 'access_token': access_token, 'regesterAs': var['registerer']}), 200
+                return jsonify({'message': 'User logged in successfully', 'access_token': access_token, 'registerAs': var['registerer']}), 200
             else:
                 return jsonify({'message': 'Invalid password'}), 400
         else:

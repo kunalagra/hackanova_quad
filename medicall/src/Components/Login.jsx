@@ -18,17 +18,19 @@ const checkoutSchema = yup.object().shape({
 });
 
 const LogIn = () => {
+  // sessionStorage.clear()
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const isNonMobile = useMediaQuery("(min-width: 600px)");
 
   const handleFormSubmit = async (values) => {
-    console.log(values);
+    // console.log(values);
     httpClint.post('/login', values).then((res) => {
        if (res.status === 200) {
-            sessionStorage.setItem("token", res.data.token);
-            console.log(res.data.token);
+            sessionStorage.setItem("token", res.data.access_token);
+            sessionStorage.setItem("registerAs", res.data.registerAs);
+            // console.log(res.data.access_token);
        }
     }).catch((err) => {
         console.log(err);
