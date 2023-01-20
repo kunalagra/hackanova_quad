@@ -1,5 +1,5 @@
 import json
-from flask import Flask, make_response, request, jsonify
+from flask import Flask, make_response, request, jsonify, Response
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS, cross_origin
 from flask_pymongo import PyMongo
@@ -11,6 +11,8 @@ from bson import json_util
 import secrets
 secret_key = secrets.token_hex(16)
 # example output, secret_key = 000d88cd9d90036ebdd237eb6b0db000
+
+
 
 app = Flask(__name__)
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -29,6 +31,15 @@ patients = client.get_database('Company').patient
 
 jwt = JWTManager(app)
 
+
+@app.before_request
+def before_request():
+    if request.method == 'OPTIONS':
+        resp = make_response()
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+        resp.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+        return resp
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -62,9 +73,23 @@ def patient_details():
         return jsonify({"msg": "Missing JSON in request"}), 400
     data = request.get_json()
     user = get_jwt_identity()
-    user = db.find_one({'email': user['email']})
+    user = patients.find_one({'email': user})
     if user:
-        db.update_one({'email': user['email']}, {'$set': {'age': data['age'],'bloodGroup':data['bloodGroup']}})
+        patients.update_one({'email': user['email']}, {'$set': data})
+        return jsonify({'message': 'Details updated successfully'}), 200
+    return jsonify({'message': 'Invalid username or password'}), 401
+
+
+@app.route('/doctor/details', methods=['POST'])
+@jwt_required()
+def doctor_details():
+    if not request.is_json:
+        return jsonify({"msg": "Missing JSON in request"}), 400
+    data = request.get_json()
+    user = get_jwt_identity()
+    user = doctor.find_one({'email': user})
+    if user:
+        doctor.update_one({'email': user['email']}, {'$set': data})
         return jsonify({'message': 'Details updated successfully'}), 200
     return jsonify({'message': 'Invalid username or password'}), 401
 
