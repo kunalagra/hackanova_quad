@@ -136,7 +136,7 @@ def get_doctor():
     for x in doctor.find():
         if 'status' in x:
             if x['status']=="Online":
-                data['name'] = 'Dr.' + data['firstName'] + " "+ data['lastName']
+                x['name'] = 'Dr.' + x['firstName'] + " "+ x['lastName']
                 data.append(x)
     return json_util.dumps(data), 200
 
