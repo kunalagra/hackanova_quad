@@ -123,9 +123,6 @@ def register():
     
                                              
 
-@app.route('/logout', methods=['GET'])
-def logout():
-    return jsonify({'message': 'User logged out successfully'}), 200
 
 @app.route('/profile', methods=['GET'])
 @jwt_required()
@@ -139,6 +136,7 @@ def get_doctor():
     for x in doctor.find():
         if 'status' in x:
             if x['status']=="Online":
+                data['name'] = 'Dr.' + data['firstName'] + " "+ data['lastName']
                 data.append(x)
     return json_util.dumps(data), 200
 
@@ -166,19 +164,13 @@ def fetM():
     return json_util.dumps(data['meet']),200
 
 
-
 @app.route('/del-meet',methods=['GET'])
 def delMeet():
     data = request.get_json()
     payload = {"meet": "na"}
     user = doctor.find_one({'email': data['email']})
     doctor.update_one({'email': user['email']}, {'$set': payload})
-
     return jsonify({'message': 'Deleted Meet'}),200
-
-
-
-
 
 
 @app.route('/news',methods=['POST'])
@@ -203,9 +195,6 @@ def get_details():
     else:
         return jsonify({'message': 'Invalid registerAs'}), 400
     
-
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
