@@ -6,7 +6,7 @@ We have successfully implemented
 - Video calling Web App through Whatsapp/Email
 - Disease Prediction Model
 - Patient Dashboard -> Create an Appointment & Recent Transactions
-- Doctor Dashboard -> 
+- Doctor Dashboard -> Speciality and Language
 - Prescription & Invoice after video call
 - Epharmacy 
 - News Section 
@@ -21,7 +21,7 @@ Front-end:
 - ReactJS & Material UI
 
 Video Call:
-- Jitsi (open source)
+- Jitsi
 
 Backend:
 - Flask
