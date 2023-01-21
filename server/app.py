@@ -136,7 +136,7 @@ def get_doctor():
     for x in doctor.find():
         if 'status' in x:
             if x['status']=="Online":
-                x['name'] = 'Dr.' + x['firstName'] + " "+ x['lastName']
+                x['name'] = 'Dr. ' + x['firstName'] + " "+ x['lastName']
                 data.append(x)
     return json_util.dumps(data), 200
 
@@ -161,7 +161,7 @@ def fetM():
     user = get_jwt_identity()
     data = doctor.find_one({'email': user})
     print(data)
-    return json_util.dumps(data['meet']),200
+    return jsonify({'meet':data['meet']}),200
 
 
 @app.route('/del-meet',methods=['GET'])
