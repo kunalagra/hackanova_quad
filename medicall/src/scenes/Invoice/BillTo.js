@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         <Text style={styles.billTo}>Bill To:</Text>
         <Text>{invoice.company}</Text>
         <Text>{invoice.address}</Text>
-        <Text>{invoice.phone}</Text>
+        <Text>{invoice.phone}</Text> 
         <Text>{invoice.email}</Text>
     </View>
   );

@@ -14,6 +14,7 @@ import Doctordetails from "./Components/Doctordetails";
 import Patientdetails from "./Components/Patientdetails";
 import JitsiComponent from "./scenes/startMeet/createMeet";
 import HomePage from "./DieseasePredictor/components/HomePage";
+import Doctors from "./scenes/doctors/Doctors";
 import PostNews from "./scenes/news/PostNews";
  
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <Route path="/faq" element={<FAQ />} />
               <Route path="/news" element={<News />} />
               <Route path="/model" element={<HomePage />} />
+              <Route path="/doctors" element={<Doctors />} />
               <Route path="/doctordetails" element={<Doctordetails />} />
               <Route path="/patientdetails" element={<Patientdetails />} />
               <Route path="/postnews" element={<PostNews />} />

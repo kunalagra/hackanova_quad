@@ -10,6 +10,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import MedicationIcon from '@mui/icons-material/Medication';
+import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
 
 
 
@@ -121,6 +122,21 @@ const Fname = fname? fname.toString() : "Firstname";
               title="Dashboard"
               to="/"
               icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            {/* DATA */}
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Data
+            </Typography>
+            <Item
+              title="Available Doctors"
+              to="/doctors"
+              icon={<MedicationLiquidIcon />}
               selected={selected}
               setSelected={setSelected}
             />
