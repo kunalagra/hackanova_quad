@@ -1,8 +1,9 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import CreateMeet from "../createMeet/CreateMeet";
 import { tokens } from "../../theme";
 import { useEffect, useState } from "react";
 import httpClint from "../../httpClint";
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 const Dashboard = () => {
     const theme = useTheme();
@@ -138,6 +139,9 @@ const Dashboard = () => {
                                 </Typography>
                             </Box>
                         </Box>
+                        <IconButton sx={{display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
+                            <RefreshIcon fontSize="large"/>
+                        </IconButton>
                     </Box>
                 ) : (
                     <CreateMeet />

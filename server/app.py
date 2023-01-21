@@ -136,7 +136,7 @@ def get_doctor():
     for x in doctor.find():
         if 'status' in x:
             if x['status']=="Online":
-                x['name'] = 'Dr.' + x['firstName'] + " "+ x['lastName']
+                x['name'] = 'Dr. ' + x['firstName'] + " "+ x['lastName']
                 data.append(x)
     return json_util.dumps(data), 200
 
@@ -146,7 +146,7 @@ def getNews():
     data = [x for x in data]    
     return json_util.dumps(data), 200
 
-@app.route('/gen-meet',methods=['GET'])
+@app.route('/gen-meet',methods=['POST'])
 def genMeet():
     data = request.get_json()
     t = int(time.time())
