@@ -52,11 +52,12 @@ def login():
         else:
             return jsonify({'message': 'Invalid password'}), 400
     else:
+        doctor.update_one({'email': data['email']}, {'$set': {'status': 'Online'}})
         var = doctor.find_one({'email': data['email']})
         if var:
             if bcrypt.check_password_hash(var['password'], data['password']):
                 access_token = create_access_token(identity=data['email'])
-                return jsonify({'message': 'User logged in successfully', 'access_token': access_token, 'registerAs': var['registerer']}), 200
+                return jsonify({'message': 'User logged in successfully', 'access_token': access_token, 'registerAs': var['registerer'],'firstName': var['firstName'],'lastName': var['lastName']}), 200
             else:
                 return jsonify({'message': 'Invalid password'}), 400
         else:
@@ -123,9 +124,6 @@ def register():
     
                                              
 
-@app.route('/logout', methods=['GET'])
-def logout():
-    return jsonify({'message': 'User logged out successfully'}), 200
 
 @app.route('/profile', methods=['GET'])
 @jwt_required()
@@ -139,6 +137,7 @@ def get_doctor():
     for x in doctor.find():
         if 'status' in x:
             if x['status']=="Online":
+                x['name'] = 'Dr. ' + x['firstName'] + " "+ x['lastName']
                 data.append(x)
     return json_util.dumps(data), 200
 
@@ -148,7 +147,7 @@ def getNews():
     data = [x for x in data]    
     return json_util.dumps(data), 200
 
-@app.route('/gen-meet',methods=['GET'])
+@app.route('/gen-meet',methods=['POST'])
 def genMeet():
     data = request.get_json()
     t = int(time.time())
@@ -163,8 +162,7 @@ def fetM():
     user = get_jwt_identity()
     data = doctor.find_one({'email': user})
     print(data)
-    return json_util.dumps(data['meet']),200
-
+    return jsonify({'meet':data['meet']}),200
 
 
 @app.route('/del-meet',methods=['GET'])
@@ -173,12 +171,7 @@ def delMeet():
     payload = {"meet": "na"}
     user = doctor.find_one({'email': data['email']})
     doctor.update_one({'email': user['email']}, {'$set': payload})
-
     return jsonify({'message': 'Deleted Meet'}),200
-
-
-
-
 
 
 @app.route('/news',methods=['POST'])
@@ -203,9 +196,6 @@ def get_details():
     else:
         return jsonify({'message': 'Invalid registerAs'}), 400
     
-
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)

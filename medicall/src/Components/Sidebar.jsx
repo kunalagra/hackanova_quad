@@ -10,11 +10,9 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import MedicationIcon from '@mui/icons-material/Medication';
+import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
 
-// const lname = localStorage.getItem("lastname");
-// const Lname = lname? lname.toString() : "Lastname";
-// const fname = localStorage.getItem("firstname");
-// const Fname = fname? fname.toString() : "Firstname";
+
 
 const Item = ({ title, icon, selected, setSelected, to }) => {
   const theme = useTheme();
@@ -33,11 +31,15 @@ const Item = ({ title, icon, selected, setSelected, to }) => {
   );
 };
 
-const Sidebar = ({Lname,Fname}) => {
+const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const lname = localStorage.getItem("lastName");
+const Lname = lname? lname.toString() : "Lastname";
+const fname = localStorage.getItem("firstName");
+const Fname = fname? fname.toString() : "Firstname";
 
   return (
     <Box 
@@ -120,6 +122,21 @@ const Sidebar = ({Lname,Fname}) => {
               title="Dashboard"
               to="/"
               icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            {/* DATA */}
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Data
+            </Typography>
+            <Item
+              title="Available Doctors"
+              to="/doctors"
+              icon={<MedicationLiquidIcon />}
               selected={selected}
               setSelected={setSelected}
             />

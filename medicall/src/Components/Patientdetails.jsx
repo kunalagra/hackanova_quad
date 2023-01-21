@@ -4,15 +4,13 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "./Header";
+import React, { Component } from 'react';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import httpClint from "../httpClint";
-import React, { Component } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import Checkbox from '@mui/material/Checkbox';
-import ListItemText from '@mui/material/ListItemText';
 
 // get doctor details like speciality, languages, certificationsId, whatsappNo
 
@@ -20,29 +18,26 @@ const phoneRegExp = /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -
 
 const initialValues = {
     languages: "Hindi",
-    speciality: "",
-    certificationsId: "",
+    PatientId: "",
     whatsappNo: "",
 }
 
-
-
 const checkoutSchema = yup.object().shape({
     languages: yup.string().required("required"),
-    speciality: yup.string().required("required"),
-    certificationsId: yup.string().required("required"),
+    PatienId: yup.string().required("required"),
     whatsappNo: yup.string().matches(phoneRegExp, "Enter Digits Only").required("required"),
 });
 
-const DoctorDetails = () => {
+
+
+const PatientDetails = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-
     const isNonMobile = useMediaQuery("(min-width: 600px)");
 
     const handleFormSubmit = async (values) => {
         console.log(values);
-        const { data } = await httpClint.post('/doctor/details', values).then((res) => {
+        const { data } = await httpClint.post('/patient/details', values).then((res) => {
             window.location = "/";
             console.log(res);
         }).catch((err) => {
@@ -59,7 +54,7 @@ const DoctorDetails = () => {
 
     return (
         <Box m="20px auto" p="0 20px" maxWidth="700px" minHeight="85vh">
-            <Header title="Doctor Details" subtitle="Enter your details" />
+            <Header title="Patient Details" subtitle="Enter your details" />
 
             <Formik
                 onSubmit={handleFormSubmit}
@@ -94,48 +89,31 @@ const DoctorDetails = () => {
                                     onChange={handleChange}
 
                                 >
-                                    <MenuItem>
-                                        <Checkbox checked={languages.indexOf('Hindi') > -1} />
-                                        <ListItemText primary="Hindi" />
-                                        <Checkbox checked={languages.indexOf('English') > -1} />
-                                        <ListItemText primary="English" />
-                                        <Checkbox checked={languages.indexOf('Telugu') > -1} />
-                                        <ListItemText primary="Telugu" />
-                                        <Checkbox checked={languages.indexOf('Tamil') > -1} />
-                                        <ListItemText primary="Tamil" />
-                                        <Checkbox checked={languages.indexOf('Kannada') > -1} />
-                                        <ListItemText primary="Kannada" />
-                                    </MenuItem>
+                                    <MenuItem value="Hindi">Hindi</MenuItem>
+                                    <MenuItem value="English">English</MenuItem>
+                                    <MenuItem value="Telugu">Telugu</MenuItem>
+                                    <MenuItem value="Tamil">Tamil</MenuItem>
+                                    <MenuItem value="Kannada">Kannada</MenuItem>
+                                    <MenuItem value="Malayalam">Malayalam</MenuItem>
+                                    <MenuItem value="Marathi">Marathi</MenuItem>
                                 </Select>
 
                             </FormControl>
                         </Box>
                         <Box mb="30px">
-                            <TextField
-                                fullWidth
-                                id="speciality"
-                                name="speciality"
-                                label="Speciality"
-                                variant="outlined"
-                                value={values.speciality}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                error={touched.speciality && Boolean(errors.speciality)}
-                                helperText={touched.speciality && errors.speciality}
-                            />
                         </Box>
                         <Box mb="30px">
                             <TextField
                                 fullWidth
-                                id="certificationsId"
-                                name="certificationsId"
-                                label="Certifications Id"
+                                id="PatienId"
+                                name="PatienId"
+                                label="Paitent Id"
                                 variant="outlined"
-                                value={values.certificationsId}
+                                value={values.PatienId}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                error={touched.certificationsId && Boolean(errors.certificationsId)}
-                                helperText={touched.certificationsId && errors.certificationsId}
+                                error={touched.PatienId && Boolean(errors.PatienId)}
+                                helperText={touched.PatienId && errors.PatienId}
                             />
                         </Box>
                         <Box mb="30px">
@@ -170,4 +148,4 @@ const DoctorDetails = () => {
     );
 };
 
-export default DoctorDetails;
+export default PatientDetails;

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         width: '10%',
         borderRightColor: borderColor,
         borderRightWidth: 1,
-    },
+    }, 
     rate: {
         width: '15%',
         borderRightColor: borderColor,

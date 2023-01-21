@@ -1,12 +1,17 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import CreateMeet from "../createMeet/CreateMeet";
 import { tokens } from "../../theme";
 import { useEffect, useState } from "react";
 import httpClint from "../../httpClint";
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 const Dashboard = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+
+    if (localStorage.getItem("token") === null || localStorage.getItem("token") === undefined) {
+        window.location.href = "/login";
+     }
 
     const loggedIn = localStorage.getItem("registerAs");
 
@@ -44,7 +49,7 @@ const Dashboard = () => {
     return (
         <Box m="20px" minHeight="85vh">
             {
-                isDoctor? (
+                isDoctor==='doctor'? (
                     <Box m="20px" display="flex" justifyContent="space-evenly" alignItems="center" marginTop="100px">
                         <Box
                             backgroundColor="white"
@@ -134,6 +139,9 @@ const Dashboard = () => {
                                 </Typography>
                             </Box>
                         </Box>
+                        <IconButton sx={{display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
+                            <RefreshIcon fontSize="large"/>
+                        </IconButton>
                     </Box>
                 ) : (
                     <CreateMeet />

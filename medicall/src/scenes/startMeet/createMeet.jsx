@@ -1,10 +1,14 @@
 import { JitsiMeeting } from '@jitsi/react-sdk';
 import React, { useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-const JitsiComponent = () => {
+const JitsiComponent = ( ) => {
     const apiRef = useRef();
     const [ logItems, updateLog ] = useState([]);
     const [ knockingParticipants, updateKnockingParticipants ] = useState([]);
+    const [searchparams] = useSearchParams();
+    const meetId = searchparams.get("meetId")
+    console.log(meetId);
 
     const printEventOutput = payload => {
         updateLog(items => [ ...items, JSON.stringify(payload) ]);
@@ -61,7 +65,7 @@ const JitsiComponent = () => {
     };
 
     // const generateRoomName = () => `JitsiMeetRoomNo${Math.random() * 100}-${Date.now()}`;
-    const generateRoomName = () => "quad";
+    const generateRoomName = () => meetId;
 
     const renderButtons = () => (
         <div style = {{ margin: '15px 0' }}>
