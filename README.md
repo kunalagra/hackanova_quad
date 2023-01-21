@@ -5,8 +5,8 @@ We have successfully implemented
 
 - Video calling Web App through Whatsapp/Email
 - Disease Prediction Model
-- Patient Dashboard -> Create an Appointment & Recent Transactions
-- Doctor Dashboard -> Speciality and Language
+- Patient Dashboard -> Create an Appointment, Latest News posted by Doctor
+- Doctor Dashboard -> Doctor Information, Speciality and Language
 - Prescription & Invoice after video call
 - Epharmacy 
 - News Section 
@@ -14,7 +14,7 @@ We have successfully implemented
 
 Additional Features :
 - Light & Dark Mode Toggle
-- Logout Functionality
+- Login & Logout Functionality
 
 # Tech Stack Used
 Front-end:
