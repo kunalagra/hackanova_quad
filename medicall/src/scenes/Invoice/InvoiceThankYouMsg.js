@@ -19,6 +19,6 @@ const styles = StyleSheet.create({
     <View style={styles.titleContainer}>
         <Text style={styles.reportTitle}>Thank you for your business</Text>
     </View>
-  );
+  ); 
   
   export default InvoiceThankYouMsg

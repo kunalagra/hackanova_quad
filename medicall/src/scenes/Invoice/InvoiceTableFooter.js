@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         width: '15%',
         textAlign: 'right',
         paddingRight: 8,
-    },
+    }, 
   });
 
 

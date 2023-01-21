@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
 });
 
-  const InvoiceItemsTable = ({invoice}) => (
+  const InvoiceItemsTable = ({invoice}) => ( 
     <View style={styles.tableContainer}>
         <InvoiceTableHeader />
         <InvoiceTableRow items={invoice.items} />
