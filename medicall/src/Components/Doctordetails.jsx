@@ -1,14 +1,18 @@
-import { TextField, Box, Button } from "@mui/material";
+import { TextField, Box, Button,useTheme } from "@mui/material";
+import { tokens } from "../theme";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "./Header";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import httpClint from "../httpClint";
+import React, { Component } from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import Checkbox from '@mui/material/Checkbox';
+import ListItemText from '@mui/material/ListItemText';
 
 // get doctor details like speciality, languages, certificationsId, whatsappNo
 
@@ -21,6 +25,8 @@ const initialValues = {
     whatsappNo: "",
 }
 
+
+
 const checkoutSchema = yup.object().shape({
     languages: yup.string().required("required"),
     speciality: yup.string().required("required"),
@@ -29,6 +35,9 @@ const checkoutSchema = yup.object().shape({
 });
 
 const DoctorDetails = () => {
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
+
     const isNonMobile = useMediaQuery("(min-width: 600px)");
 
     const handleFormSubmit = async (values) => {
@@ -40,6 +49,12 @@ const DoctorDetails = () => {
             console.log(err);
         });
         console.log(data);
+    };
+
+    const [languages, setLanguages] = React.useState('');
+
+    const handleChange = (event) => {
+        setLanguages(event.target.value);
     };
 
     return (
@@ -67,27 +82,32 @@ const DoctorDetails = () => {
                                     "& > div": { gridColumn: isNonMobile ? undefined : "span 2" },
               }}
                         >
-                            <FormControl component="fieldset">
-                                <FormLabel component="legend">Languages</FormLabel>
-                                <RadioGroup
-                                    aria-label="languages"
-                                    name="languages"
-                                    value={values.languages}
+                            <FormControl sx={{ m: 1, width:500 }} component="fieldset">
+                                <FormLabel component="legend"></FormLabel>
+                                {/* create dropdoe */}
+                                <InputLabel id="demo-simple-select-label">Languages</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={languages}
+                                    label="Languages"
                                     onChange={handleChange}
+
                                 >
-                                    <FormControlLabel value="Hindi" control={<Radio />} label="Hindi" />
-                                    <FormControlLabel value="English" control={<Radio />} label="English" />
-                                    <FormControlLabel value="Bengali" control={<Radio />} label="Bengali" />
-                                    <FormControlLabel value="Telugu" control={<Radio />} label="Telugu" />
-                                    <FormControlLabel value="Tamil" control={<Radio />} label="Tamil" />
-                                    <FormControlLabel value="Marathi" control={<Radio />} label="Marathi" />
-                                    <FormControlLabel value="Gujarati" control={<Radio />} label="Gujarati" />
-                                    <FormControlLabel value="Kannada" control={<Radio />} label="Kannada" />
-                                    <FormControlLabel value="Malayalam" control={<Radio />} label="Malayalam" />
-                                    <FormControlLabel value="Odia" control={<Radio />} label="Odia" />
-                                    <FormControlLabel value="Punjabi" control={<Radio />} label="Punjabi" />
-                                    <FormControlLabel value="Urdu" control={<Radio />} label="Urdu" />
-                                </RadioGroup>
+                                    <MenuItem>
+                                        <Checkbox checked={languages.indexOf('Hindi') > -1} />
+                                        <ListItemText primary="Hindi" />
+                                        <Checkbox checked={languages.indexOf('English') > -1} />
+                                        <ListItemText primary="English" />
+                                        <Checkbox checked={languages.indexOf('Telugu') > -1} />
+                                        <ListItemText primary="Telugu" />
+                                        <Checkbox checked={languages.indexOf('Tamil') > -1} />
+                                        <ListItemText primary="Tamil" />
+                                        <Checkbox checked={languages.indexOf('Kannada') > -1} />
+                                        <ListItemText primary="Kannada" />
+                                    </MenuItem>
+                                </Select>
+
                             </FormControl>
                         </Box>
                         <Box mb="30px">
@@ -137,7 +157,7 @@ const DoctorDetails = () => {
                                 fullWidth
                                 type="submit"
                                 variant="contained"
-                                color="primary"
+                                color="secondary"
                                 disabled={isSubmitting}
                             >
                                 Submit
