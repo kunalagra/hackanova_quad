@@ -18,6 +18,6 @@ const Prescriptionmain = () => {
         
         </PDFViewer>
     );
-    };
+    }; 
 
     export default Prescriptionmain

@@ -1,12 +1,11 @@
 import { JitsiMeeting } from "@jitsi/react-sdk";
-import { Box, TextField } from "@mui/material";
+import { Box, TextField, useTheme, Button, Typography } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import httpClint from "../../httpClint";
 import { tokens } from "../../theme";
 import { Formik } from "formik";
-import * as yup from "yup";
 
 const JitsiComponent = () => {
   const apiRef = useRef();
@@ -17,6 +16,8 @@ const JitsiComponent = () => {
   const navigate = useNavigate();
   const loggedIn = localStorage.getItem("registerAs");
   const isDoctor = loggedIn ? loggedIn.toString() : "na";
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   // console.log(meetId);
 
   const printEventOutput = (payload) => {
@@ -204,8 +205,16 @@ const JitsiComponent = () => {
   };
 
   const handleFormSubmit = (values) => {
-    console.log(initialValues.email, values)
-  }
+    // console.log(initialValues.email, values);
+    httpClint
+      .post("/add-pres", values)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Box m="20px auto" p="0 20px" minHeight="85vh">
@@ -232,16 +241,8 @@ const JitsiComponent = () => {
       {renderButtons()}
 
       {isDoctor && (
-        <Formik
-          onSubmit={handleFormSubmit}
-          initialValues={initialValues}
-        >
-          {({
-            values,
-            handleChange,
-            handleBlur,
-            handleSubmit
-          }) => (
+        <Formik onSubmit={handleFormSubmit} initialValues={initialValues}>
+          {({ values, handleChange, handleBlur, handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <Box mb="30px">
                 <TextField
@@ -253,7 +254,27 @@ const JitsiComponent = () => {
                   value={values.prescription}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  sx={{
+                    color: `${colors.grey[100]}`,
+                    borderColor: `${colors.grey[100]}`,
+                    width: "70%",
+                    display: "block"
+                  }}
                 />
+                <Button
+                  style={{
+                    backgroundColor: `${colors.blueAccent[500]}`,
+                    color: "white",
+                    padding: "6px 15px",
+                    borderRadius: "10px",
+                    border: `2px solid ${colors.blueAccent[900]}`,
+                  }}
+                  type="submit"
+                >
+                  <Typography sx={{ fontSize: "18px", marginLeft: "10px" }}>
+                    Send
+                  </Typography>
+                </Button>
               </Box>
             </form>
           )}

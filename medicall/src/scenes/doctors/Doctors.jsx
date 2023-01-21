@@ -17,7 +17,7 @@ const Doctors = () => {
     const getMeet = (p) => {
       
       console.log(p.email);
-      httpClint.post("/gen-meet", {"email":p.email})
+      httpClint.post("/gen-meet", {"email": p.email})
             .then((response) => {
               console.log(response);
               navigate("/start-meet?meetId=" + response.data.meet);

@@ -7,7 +7,7 @@ import logo from '../../assets/logo2.jpeg'
 const styles = StyleSheet.create({
     page: {
         fontFamily: 'Helvetica',
-        fontSize: 11,
+        fontSize: 11, 
         paddingTop: 30,
         paddingLeft:60,
         paddingRight:60,

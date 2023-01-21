@@ -182,7 +182,7 @@ def presCre():
     data = request.get_json()
     user = get_jwt_identity()
     user = doctor.find_one({'email': user})
-    payload = {"pmail": user['email'],"pres": data['pres']}
+    payload = {"pmail": user['pmail'],"pres": data['prescription']}
     client.get_database('Company').prescription.insert_one(payload)
     return jsonify({'message': 'Prescription Added'}), 200
 

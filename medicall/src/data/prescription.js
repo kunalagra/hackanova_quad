@@ -26,9 +26,10 @@ const styles = StyleSheet.create({
     
   });
 
-  const data = httpClint.get("/prescription")
+  const data = httpClint.get("/get-pres")
   .then(function (response) {
     console.log(response);
+    return response;
     })
     .catch(function (error) {
     console.log(error);
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
 
 //   display data
 
- const prescription = ({data}) => (
+ const prescription = () => (
         <Fragment>
             <View style={styles.invoiceNoContainer}>
                 <Text style={styles.label}>{data}</Text>

@@ -22,5 +22,5 @@ const styles = StyleSheet.create({
         <Text style={styles.reportTitle}>{title}</Text>
     </View>
   );
-
+ 
   export default PrescriptionTitle
