@@ -10,9 +10,9 @@ body,
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-/* #root {
-  height: fit-content;
-} */
+#root {
+  min-height: 100vh;
+}
 
 .app {
   display: flex;

@@ -64,7 +64,7 @@ const Sidebar = () => {
           color: "#6870fa !important",
         },
       }}
-      minHeight="100vh"
+      minHeight="calc(max(100vh,110vh))"
     >
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">

@@ -10,7 +10,7 @@ const CreateMeet = () => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Box m="20px">
+    <Box m="20px" marginBottom="30px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header
           title="Dashboard"
