@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         lineHeight: 1.5,
         flexDirection: 'column',
     }, 
-    logo: {
+    logo: { 
         width: 74,
         height: 66,
         marginLeft: 'auto',
