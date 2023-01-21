@@ -31,7 +31,7 @@ function App() {
             <Topbar />
             <Routes>
               <Route path="/" element={ <Dashboard/>}/>
-              <Route path="/start" element={ <JitsiComponent />} />
+              <Route path="/start-meet" element={ <JitsiComponent />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
               <Route path="/about" element={<About />} />

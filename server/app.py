@@ -147,7 +147,7 @@ def getNews():
     data = [x for x in data]    
     return json_util.dumps(data), 200
 
-@app.route('/gen-meet',methods=['GET'])
+@app.route('/gen-meet',methods=['POST'])
 def genMeet():
     data = request.get_json()
     t = int(time.time())
