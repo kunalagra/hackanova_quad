@@ -17,14 +17,14 @@ import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
 const Item = ({ title, icon, selected, setSelected, to }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
+  
   return (
     <MenuItem
       active={selected === title}
       style={{ color: colors.grey[100] }}
       onClick={() => setSelected(title)}
       icon={icon}
-    >
+      >
       <Typography>{title}</Typography>
       <Link to={to} />
     </MenuItem>
@@ -37,10 +37,17 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   const lname = localStorage.getItem("lastName");
-const Lname = lname? lname.toString() : "Lastname";
-const fname = localStorage.getItem("firstName");
-const Fname = fname? fname.toString() : "Firstname";
-
+  const Lname = lname? lname.toString() : "Lastname";
+  const fname = localStorage.getItem("firstName");
+  const Fname = fname? fname.toString() : "Firstname";
+  if (localStorage.getItem("token") === null || localStorage.getItem("token") === undefined) {
+    window.location.href = "/login";
+  }
+  
+  const loggedIn = localStorage.getItem("registerAs");
+  
+  const isDoctor = loggedIn? loggedIn.toString() : "na";
+  
   return (
     <Box
       sx={{
@@ -126,35 +133,44 @@ const Fname = fname? fname.toString() : "Firstname";
               setSelected={setSelected}
             />
             {/* DATA */}
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Data
-            </Typography>
-            <Item
-              title="Available Doctors"
-              to="/doctors"
-              icon={<MedicationLiquidIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            {/* MODEL */}
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Model
-            </Typography>
-            <Item
-              title="Disease Prediction"
-              to="/model"
-              icon={<PrecisionManufacturingIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            {
+              (isDoctor==="doctor")? (
+                <>
+                </>
+              ) : (
+                <>
+                <Typography
+                  variant="h6"
+                  color={colors.grey[300]}
+                  sx={{ m: "15px 0 5px 20px" }}
+                >
+                  Data
+                </Typography>
+                <Item
+                  title="Available Doctors"
+                  to="/doctors"
+                  icon={<MedicationLiquidIcon />}
+                  selected={selected}
+                  setSelected={setSelected}
+                />
+                {/* MODEL */}
+                <Typography
+                  variant="h6"
+                  color={colors.grey[300]}
+                  sx={{ m: "15px 0 5px 20px" }}
+                >
+                  Model
+                </Typography>
+                <Item
+                  title="Disease Prediction"
+                  to="/model"
+                  icon={<PrecisionManufacturingIcon />}
+                  selected={selected}
+                  setSelected={setSelected}
+                />
+                </>
+              )
+            }
             {/* Other Information */}
             <Typography
               variant="h6"

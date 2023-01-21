@@ -4,10 +4,12 @@ import { tokens } from "../../theme";
 import { useEffect, useState } from "react";
 import httpClint from "../../httpClint";
 import RefreshIcon from '@mui/icons-material/Refresh';
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    const navigate = useNavigate();
 
     if (localStorage.getItem("token") === null || localStorage.getItem("token") === undefined) {
         window.location.href = "/login";
@@ -46,6 +48,22 @@ const Dashboard = () => {
     //     details.setItem("specialization","");
     //     details.setItem("address","");
     // }
+
+
+    const handleFetch = () => {
+        httpClint.get("/fetchmeets")
+          .then((response) => {
+            console.log(response);
+            if(response.data.meet!=='na'){
+                navigate("/start-meet?meetId=" + response.data.meet);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    } 
+
+
     return (
         <Box m="20px" minHeight="85vh">
             {
@@ -139,7 +157,7 @@ const Dashboard = () => {
                                 </Typography>
                             </Box>
                         </Box>
-                        <IconButton sx={{display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
+                        <IconButton sx={{display: "flex", justifyContent: "flex-end", alignItems: "center"}} onClick={() => handleFetch()}>
                             <RefreshIcon fontSize="large"/>
                         </IconButton>
                     </Box>

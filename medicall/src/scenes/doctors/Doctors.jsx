@@ -1,11 +1,12 @@
-import { Box, useTheme, Button } from "@mui/material";
+import { Box, useTheme, Button, IconButton } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../Components/Header";
 import { useEffect, useState } from "react";
 import httpClint from "../../httpClint";
 import { useNavigate } from "react-router-dom";
-import { History } from "@remix-run/router";
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import EmailIcon from '@mui/icons-material/Email';
 
 
 const Doctors = () => {
@@ -32,7 +33,6 @@ const Doctors = () => {
      }
 
     const [doctors, setDoctors] = useState([]);
-    const [id, setId] = useState([]);
 
     useEffect(() => {
         httpClint.get("/doctor")
@@ -47,16 +47,36 @@ const Doctors = () => {
     }, []);
     
     const columns = [
-        {field: "_id.$oid", headerName: "ID", flex: 0.3, headerAlign:"center", align:"center"},
-        {field: "name", headerName: "Name", flex: 1, cellClassName: "name-column--cell"},
-        // {field: "firstName", headerName: "firstName", flex: 1, cellClassName: "name-column--cell"},
-        // {field: "lastName", headerName: "lastName", flex: 1, cellClassName: "name-column--cell"},
-        {field: "email", headerName: "Email", flex: 0.5, headerAlign: "left", align: "left"},
-        {field: "gender", headerName: "Gender", flex: 0.5, headerAlign: "left", align: "left"},
+        {field: "_id.$oid", headerName: "", flex: 0, headerAlign:"center", align:"center"},
+        {field: "name", headerName: "Name", flex: 0.7, cellClassName: "name-column--cell"},
+        {field: "email", headerName: "Email", flex: 0.6, headerAlign: "left", align: "left"},
+        {field: "gender", headerName: "Gender", flex: 0.5, headerAlign: "center", align: "center"},
+        {
+          field: "socials", headerName: "Socials", flex: 0.7, headerAlign: "center", align: "center",
+          renderCell: (params) => {
+            return (
+              <Box
+                width="50%"
+                p="5px"
+                display="flex"
+                justifyContent="space-evenly"
+                alignItems="center"
+                >
+                  <IconButton onClick={() => navigate("//wa.me/" + params.row.phone)}>
+                    <WhatsAppIcon />
+                  </IconButton>
+                  <IconButton>
+                    <EmailIcon onClick={() => navigate("//mailto:/" + params.row.email)}/>
+                  </IconButton>
+
+              </Box>
+            )
+          },
+        },
         {
             field: "appointments", 
             headerName: "Book an Appointment",
-            flex: 0.5,
+            flex: 0.7,
             renderCell: (params) => {
                 return (
                     <Box
