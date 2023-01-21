@@ -17,9 +17,17 @@ const styles = StyleSheet.create({
     },
     label: {
         width: 60
+    },
+    name: {
+        marginLeft: -15,
     }
     
   });
+
+  const lname = localStorage.getItem("lastName");
+  const Lname = lname? lname.toString() : "Lastname";
+  const fname = localStorage.getItem("firstName");
+  const Fname = fname? fname.toString() : "Firstname";
 
 
   const InvoiceNo = ({invoice}) => (
@@ -27,6 +35,10 @@ const styles = StyleSheet.create({
             <View style={styles.invoiceNoContainer}>
                 <Text style={styles.label}>Invoice No:</Text>
                 <Text style={styles.invoiceDate}>{invoice.invoice_no}</Text>
+            </View >
+            <View style={styles.invoiceDateContainer}>
+                    <Text style={styles.label}> Name:</Text>
+                    <Text style={styles.name}>{Fname} {Lname}</Text>
             </View >
             <View style={styles.invoiceDateContainer}>
                 <Text style={styles.label}>Date: </Text>

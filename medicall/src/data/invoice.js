@@ -14,19 +14,19 @@ const invoice = {
         "desc": "Doctor Charges",
         "qty": 1,
         "rate": 200
-      },
-      {
-        "sno": 2,
-        "desc": "Consumables",
-        "qty": 3,
-        "rate": 120
-      },
-      {
-        "sno": 4,
-        "desc": "Miscellaneous",
-        "qty": 1,
-        "rate": 50
       }
+      // {
+      //   "sno": 2,
+      //   "desc": "Consumables",
+      //   "qty": 3,
+      //   "rate": 120
+      // },
+      // {
+      //   "sno": 4,
+      //   "desc": "Miscellaneous",
+      //   "qty": 1,
+      //   "rate": 50
+      // }
     ]
   }
   

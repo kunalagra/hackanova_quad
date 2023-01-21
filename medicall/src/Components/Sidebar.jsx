@@ -40,9 +40,6 @@ const Sidebar = () => {
   const Lname = lname? lname.toString() : "Lastname";
   const fname = localStorage.getItem("firstName");
   const Fname = fname? fname.toString() : "Firstname";
-  // if (localStorage.getItem("token") === null || localStorage.getItem("token") === undefined) {
-  //   window.location.href = "/login";
-  // }
   
   const loggedIn = localStorage.getItem("registerAs");
   
