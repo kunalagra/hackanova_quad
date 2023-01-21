@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import httpClint from "../../httpClint";
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { useNavigate } from "react-router-dom";
+import { borderRadius } from "@mui/system";
 
 const Dashboard = () => {
     const theme = useTheme();
@@ -138,7 +139,7 @@ const Dashboard = () => {
                                     variant="h4"
                                     color={colors.grey[100]}
                                 >
-                                    {details.specialization}
+                                    {details.speciality}
                                 </Typography>
                             </Box>
                             <Box display="flex" alignItems="center" margin="20px" width="350px">
@@ -147,15 +148,29 @@ const Dashboard = () => {
                                     color="secondary"
                                     mr="30px"
                                 >
-                                    Address
+                                    Languages
                                 </Typography>
                                 <Typography
                                     variant="h4"
                                     color={colors.grey[100]}
                                 >
-                                    {details.address}
+                                    {details.languages}
                                 </Typography>
                             </Box>
+                            <Box display="flex" alignItems="center" margin="20px" width="350px">
+                                <button style={{
+                                    backgroundColor:`${colors.blueAccent[600]}`,
+                                    color: `${colors.grey[100]}`,
+                                    padding: "6px 15px",
+                                    borderRadius: "12px",
+                                    border: `2px solid ${colors.blueAccent[900]}`
+                                    }} onClick={() => navigate("/doctordetails")}>
+                                    <Typography variant="h3">
+                                        Update Profile
+                                    </Typography> 
+                                </button>
+                            </Box>
+
                         </Box>
                         <IconButton sx={{display: "flex", justifyContent: "flex-end", alignItems: "center"}} onClick={() => handleFetch()}>
                             <RefreshIcon fontSize="large"/>

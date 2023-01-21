@@ -17,7 +17,7 @@ import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
 const Item = ({ title, icon, selected, setSelected, to }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  
+  const t = (title==="Buy Medicines") ? "_blank": ""; 
   return (
     <MenuItem
       active={selected === title}
@@ -26,7 +26,7 @@ const Item = ({ title, icon, selected, setSelected, to }) => {
       icon={icon}
       >
       <Typography>{title}</Typography>
-      <Link to={to} target="_blank"/>
+      <Link to={to} target={t}/>
     </MenuItem>
   );
 };
@@ -40,9 +40,9 @@ const Sidebar = () => {
   const Lname = lname? lname.toString() : "Lastname";
   const fname = localStorage.getItem("firstName");
   const Fname = fname? fname.toString() : "Firstname";
-  if (localStorage.getItem("token") === null || localStorage.getItem("token") === undefined) {
-    window.location.href = "/login";
-  }
+  // if (localStorage.getItem("token") === null || localStorage.getItem("token") === undefined) {
+  //   window.location.href = "/login";
+  // }
   
   const loggedIn = localStorage.getItem("registerAs");
   
@@ -67,7 +67,7 @@ const Sidebar = () => {
           color: "#6870fa !important",
         },
       }}
-      minHeight="85vh"
+      minHeight="100vh"
     >
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
@@ -117,7 +117,7 @@ const Sidebar = () => {
                   {Fname} {Lname}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  Profession
+                  {(isDoctor==='doctor')?"Doctor":"Patient"}
                 </Typography>
               </Box>
             </Box>
