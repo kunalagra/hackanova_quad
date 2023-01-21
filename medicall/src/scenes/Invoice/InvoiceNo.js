@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 import {Text, View, StyleSheet } from '@react-pdf/renderer';
+import invoice from '../../data/invoice';
+
 
 const styles = StyleSheet.create({
     invoiceNoContainer: {
@@ -20,6 +22,9 @@ const styles = StyleSheet.create({
     },
     name: {
         marginLeft: -15,
+    },
+    pres:{
+        justifyContent: 'center'
     }
     
   });
@@ -28,8 +33,22 @@ const styles = StyleSheet.create({
   const Lname = lname? lname.toString() : "Lastname";
   const fname = localStorage.getItem("firstName");
   const Fname = fname? fname.toString() : "Firstname";
+//   const [data, setData] = useState([]);
 
+//   function data() {
+//         httpClint.get("/get-pres")
+//         .then(function (response) {
+//             // console.log(response.data.pres);
+//             return response.data.pres;
+//             })
+//             .catch(function (error) {
+//             console.log(error);
+//             }
+//             );
+//         }
 
+//   const d = data();
+//   console.log(d)
   const InvoiceNo = ({invoice}) => (
         <Fragment>
             <View style={styles.invoiceNoContainer}>
