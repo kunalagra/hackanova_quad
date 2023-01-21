@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import { useTheme } from "@mui/material";
 import "./Patient.css";
+import { tokens } from "../../../theme";
+
 
 const Patient = ({ age, ageChange, male, female, gender }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   // props > age, gender, male, female
 
   return (
@@ -16,7 +21,9 @@ const Patient = ({ age, ageChange, male, female, gender }) => {
         </form>
       </div>
       <div id="Home" className="tablet:grid-col padding-x-2">
-        <p>What is your sex?</p>
+        <p style={{
+              color: colors.grey[100],
+            }}>What is your sex?</p>
         <form class="usa-form">
           <div class="usa-radio">
             <input class="usa-radio__input outline-0" id="stanton" type="radio" checked={male} onChange={gender} name="historical-figures-2" value="male" />

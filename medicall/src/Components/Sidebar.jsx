@@ -49,7 +49,7 @@ const Sidebar = () => {
   const isDoctor = loggedIn? loggedIn.toString() : "na";
   
   return (
-    <Box
+    <Box 
       sx={{
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,

@@ -133,12 +133,12 @@ class Patient2 extends Component {
     return (
       <div id="Patient2" className="tablet:grid-col padding-x-2">
         <div className="width-full flex-column flex-align-center">
-          <h2 style={{ marginBottom: "15px" }}> Please check all the statement below that applies you</h2>
-          <p> Select one answer in each row </p>
+          <h2 style={{ marginBottom: "15px", fontSize: "24px" }}> Please check all the statement below that applies you</h2>
+          <h6> Select one answer in each row </h6>
         </div>
-        <div className="radioButtonDiv ">
-          <h3>I am overweight</h3>
-          <form className="usa-form FormElement">
+        <div className="radioButtonDiv " style={{marginTop: "30px"}}>
+          <h4>I am overweight</h4>
+          <form className="usa-form FormElement" id="patient2-form">
             <div className="usa-radio margin-x-1">
               <input
                 className="usa-radio__input I_am_overweight_or_obese"
@@ -184,8 +184,8 @@ class Patient2 extends Component {
           </form>
         </div>
         <div className="radioButtonDiv">
-          <h3>I smoke cigarettes</h3>
-          <form className="usa-form FormElement">
+          <h4>I smoke cigarettes</h4>
+          <form className="usa-form FormElement"  id="patient2-form">
             <div className="usa-radio margin-x-1">
               <input
                 className="usa-radio__input I smoke cigarettes"
@@ -231,8 +231,8 @@ class Patient2 extends Component {
           </form>
         </div>
         <div className="radioButtonDiv">
-          <h3>I have been recently injured</h3>
-          <form className="usa-form FormElement">
+          <h4>I have been recently injured</h4>
+          <form className="usa-form FormElement"  id="patient2-form">
             <div className="usa-radio margin-x-1">
               <input
                 className="usa-radio__input I have been recently injured"
@@ -278,8 +278,8 @@ class Patient2 extends Component {
           </form>
         </div>
         <div className="radioButtonDiv">
-          <h3>I have high cholesterol</h3>
-          <form className="usa-form FormElement">
+          <h4>I have high cholesterol</h4>
+          <form className="usa-form FormElement"  id="patient2-form">
             <div className="usa-radio margin-x-1">
               <input
                 className="usa-radio__input I have high cholesterol"
@@ -325,8 +325,8 @@ class Patient2 extends Component {
           </form>
         </div>
         <div className="radioButtonDiv">
-          <h3>I have hypertensionl</h3>
-          <form className="usa-form FormElement">
+          <h4>I have hypertensionl</h4>
+          <form className="usa-form FormElement"  id="patient2-form">
             <div className="usa-radio margin-x-1">
               <input
                 className="usa-radio__input I have hypertension"
@@ -372,8 +372,8 @@ class Patient2 extends Component {
           </form>
         </div>
         <div className="radioButtonDiv">
-          <h3>I have diabetes</h3>
-          <form className="usa-form FormElement">
+          <h4>I have diabetes</h4>
+          <form className="usa-form FormElement"  id="patient2-form">
             <div className="usa-radio margin-x-1">
               <input
                 className="usa-radio__input I have diabetes"
