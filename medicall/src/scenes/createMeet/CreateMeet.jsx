@@ -4,6 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Header from "../../Components/Header";
 import { Link, useNavigate } from "react-router-dom";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import News from "../news/News";
 
 const CreateMeet = () => {
   const theme = useTheme();
@@ -18,7 +19,7 @@ const CreateMeet = () => {
           subtitle="Track your health!!"
         />
       </Box>
-      <Box display="flex" alignItems="center" margin="20px" width="350px">
+      <Box display="flex" alignItems="center" margin="20px" width="350px" >
           <Button style={{backgroundColor: `${colors.blueAccent[500]}`, color:"white",
           padding: "6px 15px",
           borderRadius: "10px",
@@ -81,7 +82,7 @@ const CreateMeet = () => {
                     </Link>
                     
                 </Box>
-            </Box>
+            </Box> 
         </Box>
 
         <Box
@@ -95,7 +96,7 @@ const CreateMeet = () => {
           alignItems="center"
           justifyContent="center"
         >
-            <Box 
+            {/* <Box 
                 p="2px"
                 border={`1px dashed ${colors.blueAccent[600]}`}
                 borderRadius= "12px"
@@ -126,7 +127,8 @@ const CreateMeet = () => {
                         Latest News
                     </Link>
                 </Box>
-            </Box>
+            </Box> */}
+            <News isdashboard={true}/>
         </Box>
         <Box
           gridColumn="span 8"
