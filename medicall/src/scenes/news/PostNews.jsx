@@ -28,7 +28,7 @@ const PostNews = () => {
     const handleFormSubmit = async (values) => {
         // console.log(values);
         values["author"] = "Dr."+" "+localStorage.getItem("firstName")+ " " + localStorage.getItem("lastName");
-        console.log(values);
+        // console.log(values);
         httpClint.post('/news', values).then((res) => {
             if (res.status === 200) {
                 window.location.href = "/news"
