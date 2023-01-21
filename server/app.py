@@ -170,7 +170,7 @@ def fetM():
 def delMeet():
     user = get_jwt_identity()
     payload = {"meet": "na"}
-    user = doctor.find_one({'email': data['email']})
+    user = doctor.find_one({'email': user})
     doctor.update_one({'email': user['email']}, {'$set': payload})
     return jsonify({'message': 'Deleted Meet'}),200
 
