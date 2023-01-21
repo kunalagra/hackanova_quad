@@ -48,7 +48,7 @@ const Dashboard = () => {
     return (
         <Box m="20px" minHeight="85vh">
             {
-                isDoctor? (
+                isDoctor==='doctor'? (
                     <Box m="20px" display="flex" justifyContent="space-evenly" alignItems="center" marginTop="100px">
                         <Box
                             backgroundColor="white"
