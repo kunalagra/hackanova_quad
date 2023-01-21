@@ -5,7 +5,11 @@ import Patient from "./Patient/Patient1";
 import Patient2 from "./Patient/Patient2";
 import Symptom from "./Symptom/Symptom";
 import Disease from "./Disease/Disease";
+import { tokens } from "../../theme";
+import { useTheme } from "@mui/material";
+
 class HomePage extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -32,10 +36,11 @@ class HomePage extends Component {
       disease_possibility: [],
       user_symptoms: [],
       user_symptom_length: "",
+      // colors : tokens(this.theme.palette.mode)
     };
     this.symptomPage = React.createRef();
   }
-
+  
   home_button_check_event = (e) => {
     // console.log("Event Called");
     if (e.target.checked === true) {
@@ -228,24 +233,27 @@ class HomePage extends Component {
     const { tab_progress, button_is_disabled, patient_2_next_button_disabled, user_symptom_length, current_page } = this.state;
     return (
       <React.Fragment>
-        <main id="main-content">
+        <main id="main-content" style={{width: "80%", margin: "0 auto"}}>
           <div className="grid-container padding-bottom-4">
-            <div className="grid-row padding-4">
-              <div className="desktop:grid-col-2">
-                <ul className="side-menu-list padding-left-2">
+            <div className="grid-row padding-4" style={{padding: "20px"}}>
+              {/* <div className="desktop:grid-col-2"> */}
+                {/* <ul className="side-menu-list padding-left-2">
 				  <li id="progressbar"><div className={`${tab_progress === 25 && "progressbardiv25"} ${tab_progress === 50 && "progressbardiv50"} ${tab_progress === 75 && "progressbardiv75"} ${tab_progress === 100 && "progressbardiv100"}`}></div></li>
                   <li className={`${current_page === "Home" ? "active" : "done"}`}>Welcome</li>
                   <li className={`${tab_progress === 50 && "active"} ${tab_progress < 50 && "list"} ${tab_progress > 50 && "done"}`}>Patient</li>
                   <li className={`${tab_progress === 75 && "active"} ${tab_progress < 75 && "list"} ${tab_progress > 75 && "done"}`}>Symptom</li>
                   <li className={`${tab_progress === 100 && "active"} ${tab_progress < 100 && "list"} ${tab_progress > 100 && "done"}`}>Disease</li>
-                </ul>
-              </div>
+                </ul> */}
+              {/* </div> */}
               <div className="desktop:grid-col-10" id="ContentDiv padding-bottom-3">
                 <div className="grid-row padding-bottom-4 shoPageSection">{this.showPage()}</div>
               </div>
               <div className="desktop:grid-col-12">
-                <div id="buttonsSection" className="grid-row display-flex padding-left-2 padding-right-2 padding-top-2">
-                  <button disabled={this.state.current_page === "Home"} onClick={this.get_previous_page} className="usa-button usa-button--outline back">
+                <div id="buttonsSection" className="grid-row display-flex padding-left-2 padding-right-2 padding-top-4" style={{paddingTop: "6px"}}>
+                  <button disabled={this.state.current_page === "Home"} onClick={this.get_previous_page} className="usa-button usa-button--outline back"
+                    style={{padding: "5px 9px", borderRadius:"10px", 
+                            backgroundColor: "cyan", color: "#000", marginRight: "10px"}}
+                  >
                     Back
                   </button>
                   {/* {current_page === "Symptom" ? this.renderResetButton() : ""} */}
@@ -254,6 +262,8 @@ class HomePage extends Component {
                     disabled={button_is_disabled || patient_2_next_button_disabled || user_symptom_length === 0}
                     type="submit"
                     onClick={this.get_next_page}
+                    style={{padding: "5px 9px", borderRadius:"10px", 
+                            backgroundColor: "cyan", color: "#000"}}
                   >
                     {this.state.button_name}
                   </button>

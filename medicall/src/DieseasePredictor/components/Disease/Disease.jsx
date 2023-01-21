@@ -1,3 +1,4 @@
+import { minHeight } from "@mui/system";
 import React, { Component } from "react";
 import Patient2 from "../Patient/Patient2";
 import "./Disease.css";
@@ -14,7 +15,13 @@ class Disease extends Component {
       return e.possibility > 0;
     });
     filtered_list.sort((a, b) => -a.possibility.localeCompare(b.possibility, undefined, { numeric: true }) || a.name.localeCompare(b.name));
-    return filtered_list.length !== 0 ? (
+
+    const finalList = [];
+    for(let i=0; i<Math.min(filtered_list.length, 5); i++){
+      finalList.push(filtered_list[i])
+    }
+
+    return finalList.length !== 0 ? (
       <div className="grid-row width-full DiseaseComponent">
         <div className="col-12 tablet:grid-col-12 patientInfo">
           <h3>Patient gender: {this.props.gender}</h3>
@@ -30,7 +37,7 @@ class Disease extends Component {
         </div>
         <div className="col-12 tablet:grid-col-12 DiagnosisReport">
           <h2>Diagnosis Report</h2>
-          {filtered_list.map((key, id) => (
+          {finalList.map((key, id) => (
             <div className="reportDiv" key={id}>
               <div className="display-flex flex-row flex-justify flex-wrap">
                 <div className="display-flex flex-align-center titleReport">

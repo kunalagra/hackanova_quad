@@ -2,42 +2,30 @@ const invoice = {
     "id": "5df3180a09ea16dc4b95f910",
     "invoice_no": "201906-28",
     "balance": "$2,283.74",
-    "company": "MANTRIX",
-    "email": "susanafuentes@mantrix.com",
-    "phone": "+1 (872) 588-3809",
-    "address": "922 Campus Road, Drytown, Wisconsin, 1986",
-    "trans_date": "2019-09-12",
-    "due_date": "2019-10-12",
+    "company": "MEDICALL",
+    "email": "medicall@company.com",
+    "phone": "+91 9123456789",
+    "address": "TCET, Kandivali, Mumbai - 400100",
+    "trans_date": "21-10-2023",
+    "due_date": "22-10-2023",
     "items": [
       {
         "sno": 1,
-        "desc": "ad sunt culpa occaecat qui",
-        "qty": 5,
-        "rate": 405.89
+        "desc": "Doctor Charges",
+        "qty": 1,
+        "rate": 200
       },
       {
         "sno": 2,
-        "desc": "cillum quis sunt qui aute",
-        "qty": 5,
-        "rate": 373.11
-      },
-      {
-        "sno": 3,
-        "desc": "ea commodo labore culpa irure",
-        "qty": 5,
-        "rate": 458.61
+        "desc": "Consumables",
+        "qty": 3,
+        "rate": 120
       },
       {
         "sno": 4,
-        "desc": "nisi consequat et adipisicing dolor",
-        "qty": 10,
-        "rate": 725.24
-      },
-      {
-        "sno": 5,
-        "desc": "proident cillum anim elit esse",
-        "qty": 4,
-        "rate": 141.02
+        "desc": "Miscellaneous",
+        "qty": 1,
+        "rate": 50
       }
     ]
   }

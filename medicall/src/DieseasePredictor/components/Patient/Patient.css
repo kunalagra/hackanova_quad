@@ -14,7 +14,6 @@
   }
   .FormElement {
     display: flex;
-    justify-content: center;
     align-items: left;
   }
   .radioButtonDiv {
@@ -23,6 +22,16 @@
     align-items: left;
   }
   
+  #patient2-form label {
+    font-size: 18px;
+  }
+
+  #patient2-form input {
+    margin-left: 20px;
+    margin-right: 6px;
+  }
+
+
   @media (max-width: 63.938em) {
     .radioButtonDiv {
       display: flex;

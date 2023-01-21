@@ -25,13 +25,13 @@
   @media (min-width: 64em) {
     .side-menu-list {
       list-style-type: none;
-      color: #555555;
+      color: #0c5f96;
     }
     .side-menu-list > .list {
       /* padding: 10px 10px; */
       font-size: 1rem;
       border-left: 2px solid #cfd6dd;
-      color: #000;
+      color: rgb(224, 224, 224);
     }
   }
   
@@ -52,10 +52,12 @@
   }
   
   .done {
-    color: #000;
+    color: #0c5f96;
     font-weight: normal;
+    color: #cfd6dd;
     border-left: 2px solid #0c5f96;
   }
+
   
   @media (max-width: 63.938em) {
   
@@ -122,6 +124,7 @@
   
     .done {
       border-left: none;
+      color: #0c5f96;
       border-bottom: 2px solid #0c5f96;
       display: none;
     }

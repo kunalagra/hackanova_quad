@@ -1,22 +1,32 @@
-import React, { Component } from "react";
+import React from "react";
+import { useTheme } from "@mui/material";
+import { tokens } from "../../../theme";
+
 import "./Home.css";
 
 const Home = (props) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
   //   console.log("is checked", props, props.isChecked, props.checked);
   return (
     <React.Fragment>
       <div id="Home" className="tablet:grid-col padding-x-2">
-        <p>Before using this symptom checker, please read carefully and accept our Terms and Services:</p>
-        <ul>
-          <li>This checkup is not a diagnosis.</li>
-          <li>This checkup is for informational purposes and is not a qualified medical opinion.</li>
-          <li>Information that you provide is anonymous and not shared with anyone. We also do not store any information on our server.</li>
+        <h6 style={{
+              color: colors.grey[100],
+            }}>Before using this symptom checker, please read carefully and accept our Terms and Services:</h6>
+        <ul style={{
+              color: colors.grey[100],
+            }}>
+          <li style={{fontSize: "16px"}}>This checkup is not a diagnosis.</li>
+          <li style={{fontSize: "16px"}}>This checkup is for informational purposes and is not a qualified medical opinion.</li>
+          <li style={{fontSize: "16px"}}>Information that you provide is anonymous and not shared with anyone. We also do not store any information on our server.</li>
         </ul>
         <form class="usa-form TermsCheckbox">
           <div class="usa-checkbox">
             <input checked={props.isChecked} onChange={props.checked} class="usa-checkbox__input" id="truth" type="checkbox" name="historical-figures-1" value="truth" />
             <label class="usa-checkbox__label" for="truth">
-              I agree to the DHILab terms and conditions
+              I agree to the MediCall terms and conditions
             </label>
           </div>
         </form>
