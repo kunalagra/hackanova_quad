@@ -1,6 +1,8 @@
 import { JitsiMeeting } from '@jitsi/react-sdk';
 import React, { useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import httpClint from '../../httpClint';
 
 const JitsiComponent = ( ) => {
     const apiRef = useRef();
@@ -8,7 +10,8 @@ const JitsiComponent = ( ) => {
     const [ knockingParticipants, updateKnockingParticipants ] = useState([]);
     const [searchparams] = useSearchParams();
     const meetId = searchparams.get("meetId")
-    console.log(meetId);
+    const navigate = useNavigate();
+    // console.log(meetId);
 
     const printEventOutput = payload => {
         updateLog(items => [ ...items, JSON.stringify(payload) ]);
@@ -64,6 +67,16 @@ const JitsiComponent = ( ) => {
         console.log('Ready to close...');
     };
 
+    const handleEndMeeting = () => {
+        httpClint.get("/del-meet")
+          .then((response) => {
+            navigate("/invoice");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    };
+
     // const generateRoomName = () => `JitsiMeetRoomNo${Math.random() * 100}-${Date.now()}`;
     const generateRoomName = () => meetId;
 
@@ -110,13 +123,28 @@ const JitsiComponent = ( ) => {
                         border: 0,
                         borderRadius: '6px',
                         fontSize: '14px',
-                        background: '#df486f',
+                        background: '#3D3D3D',
                         color: 'white',
                         padding: '12px 46px',
                         margin: '2px 2px'
                     }}
                     onClick = { () => apiRef.current.executeCommand('subject', 'New Subject')}>
                     Change subject
+                </button>
+                <button
+                    type = 'text'
+                    title = 'Click to end the meeting'
+                    style = {{
+                        border: 0,
+                        borderRadius: '6px',
+                        fontSize: '14px',
+                        background: '#df486f',
+                        color: 'white',
+                        padding: '12px 46px',
+                        margin: '2px 2px'
+                    }}
+                    onClick = { () => handleEndMeeting()}>
+                    End Meeting
                 </button>
             </div>
         </div>
@@ -138,7 +166,7 @@ const JitsiComponent = ( ) => {
                 fontFamily: 'sans-serif',
                 textAlign: 'center'
             }}>
-                JitsiMeeting Demo App
+                Video Meet
             </h1>
             <JitsiMeeting
                 roomName = { generateRoomName() }
