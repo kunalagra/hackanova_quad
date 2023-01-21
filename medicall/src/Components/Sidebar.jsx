@@ -26,7 +26,7 @@ const Item = ({ title, icon, selected, setSelected, to }) => {
       icon={icon}
       >
       <Typography>{title}</Typography>
-      <Link to={to} />
+      <Link to={to} target="_blank"/>
     </MenuItem>
   );
 };
@@ -203,7 +203,7 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Buy Medicines"
-              to="/medicines"
+              to="//sultanindian007.github.io/EPharmacy/"
               icon={<MedicationIcon />}
               selected={selected}
               setSelected={setSelected}

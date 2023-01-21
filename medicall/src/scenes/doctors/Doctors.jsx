@@ -51,6 +51,7 @@ const Doctors = () => {
         {field: "name", headerName: "Name", flex: 0.7, cellClassName: "name-column--cell"},
         {field: "email", headerName: "Email", flex: 0.6, headerAlign: "left", align: "left"},
         {field: "gender", headerName: "Gender", flex: 0.5, headerAlign: "center", align: "center"},
+        {field: "speciality", headerName: "Specialization", flex: 0.6, headerAlign: "center", align: "center"},
         {
           field: "socials", headerName: "Socials", flex: 0.7, headerAlign: "center", align: "center",
           renderCell: (params) => {
