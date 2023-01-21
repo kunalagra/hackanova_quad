@@ -174,6 +174,21 @@ def delMeet():
     doctor.update_one({'email': user['email']}, {'$set': payload})
     return jsonify({'message': 'Deleted Meet'}),200
 
+@app.route('/add-pres',methods=['POST'])
+def presCre():
+    data = request.get_json()
+    user = doctor.find_one({'email': data['email']})
+    payload = {"pmail": user['pmail'],"pres": data['pres']}
+    client.get_database('Company').prescription.insert_one(payload)
+    return jsonify({'message': 'Prescription Added'}), 200
+
+@app.route('/get-pres',methods=['POST'])
+def getPres ():
+    data = request.get_json()
+    print(data)
+    return json_util.dumps(client.get_database('Company').prescription.find_one({'pmail': data['email']}))
+
+
 
 @app.route('/news',methods=['POST'])
 def addNews():
