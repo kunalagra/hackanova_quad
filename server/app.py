@@ -144,17 +144,17 @@ def get_doctor():
 @app.route('/news',methods=['GET'])
 def getNews():
     data = client.get_database('Company').news.find()
-    data = [x for x in data]    
-    return json_util.dumps(data), 200
+    data = [x for x in data]
+    return json_util.dumps(data[::-1]), 200
 
 @app.route('/gen-meet',methods=['POST'])
 def genMeet():
     data = request.get_json()
     t = int(time.time())
     user = doctor.find_one({'email': data['email']})
-    payload = {"meet": str(t)}
+    payload = {"meet": str(t),'pmail': data['pmail']}
     doctor.update_one({'email': user['email']}, {'$set': payload})
-    return json_util.dumps(payload),200
+    return jsonify({'meet': str(t)}),200
 
 @app.route('/fetchmeets',methods=['GET'])
 @jwt_required()
