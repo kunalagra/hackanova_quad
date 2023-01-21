@@ -8,19 +8,28 @@ const invoice = {
     "address": "TCET, Kandivali, Mumbai - 400100",
     "trans_date": "21-10-2023",
     "due_date": "22-10-2023",
+    "pres": ["AZITHROMYCIN", "LEVOCETRIZINE"],
     "items": [
       {
         "sno": 1,
         "desc": "Doctor Charges",
         "qty": 1,
         "rate": 200
+      },
+      
+      {
+        "sno": 2,
+        "desc": "Prescription: AZITHROMYCIN",
+        "qty": 0,
+        "rate": 0
+      },
+      {
+        "sno": 3,
+        "desc": "Prescription: LEVOCETRIZINE",
+        "qty": 0,
+        "rate": 0
+
       }
-      // {
-      //   "sno": 2,
-      //   "desc": "Consumables",
-      //   "qty": 3,
-      //   "rate": 120
-      // },
       // {
       //   "sno": 4,
       //   "desc": "Miscellaneous",
