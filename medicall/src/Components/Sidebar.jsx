@@ -12,10 +12,7 @@ import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturi
 import MedicationIcon from '@mui/icons-material/Medication';
 import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
 
-// const lname = localStorage.getItem("lastname");
-// const Lname = lname? lname.toString() : "Lastname";
-// const fname = localStorage.getItem("firstname");
-// const Fname = fname? fname.toString() : "Firstname";
+
 
 const Item = ({ title, icon, selected, setSelected, to }) => {
   const theme = useTheme();
@@ -34,11 +31,15 @@ const Item = ({ title, icon, selected, setSelected, to }) => {
   );
 };
 
-const Sidebar = ({Lname,Fname}) => {
+const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const lname = localStorage.getItem("lastName");
+const Lname = lname? lname.toString() : "Lastname";
+const fname = localStorage.getItem("firstName");
+const Fname = fname? fname.toString() : "Firstname";
 
   return (
     <Box
