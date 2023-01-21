@@ -166,8 +166,9 @@ def fetM():
 
 
 @app.route('/del-meet',methods=['GET'])
+@jwt_required()
 def delMeet():
-    data = request.get_json()
+    user = get_jwt_identity()
     payload = {"meet": "na"}
     user = doctor.find_one({'email': data['email']})
     doctor.update_one({'email': user['email']}, {'$set': payload})
