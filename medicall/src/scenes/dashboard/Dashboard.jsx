@@ -8,6 +8,10 @@ const Dashboard = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
+    if (localStorage.getItem("token") === null || localStorage.getItem("token") === undefined) {
+        window.location.href = "/login";
+     }
+
     const loggedIn = localStorage.getItem("registerAs");
 
     const isDoctor = loggedIn? loggedIn.toString() : "na";

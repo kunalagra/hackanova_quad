@@ -1,12 +1,12 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography} from "@mui/material";
 import Header from "../../Components/Header";
-import { tokens } from "../../theme";
+// import { tokens } from "../../theme";
 import { useEffect, useState } from "react";
 import httpClint from "../../httpClint";
 
 const News = ({ isDoctor = false}) => {
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
+    // const theme = useTheme();
+    // const colors = tokens(theme.palette.mode);
     const [news,setnews] = useState([]);
 
     useEffect(() => {

@@ -8,11 +8,10 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+import MedicationIcon from '@mui/icons-material/Medication';
 
-// const lname = localStorage.getItem("lastname");
-// const Lname = lname? lname.toString() : "Lastname";
-// const fname = localStorage.getItem("firstname");
-// const Fname = fname? fname.toString() : "Firstname";
+
 
 const Item = ({ title, icon, selected, setSelected, to }) => {
   const theme = useTheme();
@@ -31,11 +30,15 @@ const Item = ({ title, icon, selected, setSelected, to }) => {
   );
 };
 
-const Sidebar = ({Lname,Fname}) => {
+const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const lname = localStorage.getItem("lastName");
+const Lname = lname? lname.toString() : "Lastname";
+const fname = localStorage.getItem("firstName");
+const Fname = fname? fname.toString() : "Firstname";
 
   return (
     <Box
@@ -121,6 +124,21 @@ const Sidebar = ({Lname,Fname}) => {
               selected={selected}
               setSelected={setSelected}
             />
+            {/* MODEL */}
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Model
+            </Typography>
+            <Item
+              title="Disease Prediction"
+              to="/model"
+              icon={<PrecisionManufacturingIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             {/* Other Information */}
             <Typography
               variant="h6"
@@ -140,6 +158,21 @@ const Sidebar = ({Lname,Fname}) => {
               title="FAQ"
               to="/faq"
               icon={<HelpOutlineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            {/* SHOP */}
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Shop
+            </Typography>
+            <Item
+              title="Buy Medicines"
+              to="/medicines"
+              icon={<MedicationIcon />}
               selected={selected}
               setSelected={setSelected}
             />

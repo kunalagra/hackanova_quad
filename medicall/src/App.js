@@ -11,8 +11,10 @@ import Topbar from "./Components/Topbar"
 import Dashboard from "./scenes/dashboard/Dashboard";
 import News from "./scenes/news/News";
 import Doctordetails from "./Components/Doctordetails";
+import Patientdetails from "./Components/Patientdetails";
 import JitsiComponent from "./scenes/startMeet/createMeet";
 import HomePage from "./DieseasePredictor/components/HomePage";
+import PostNews from "./scenes/news/PostNews";
  
 function App() {
 
@@ -35,7 +37,10 @@ function App() {
               <Route path="/faq" element={<FAQ />} />
               <Route path="/news" element={<News />} />
               <Route path="/model" element={<HomePage />} />
-              <Route path="/details" element={<Doctordetails />} />
+              <Route path="/doctordetails" element={<Doctordetails />} />
+              <Route path="/patientdetails" element={<Patientdetails />} />
+              <Route path="/postnews" element={<PostNews />} />
+              {/* <Route path="/details" element={<Doctordetails />} /> */}
 
               <Route path="/*" element={<NotFound />}/>
             </Routes>

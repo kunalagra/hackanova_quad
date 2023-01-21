@@ -16,24 +16,22 @@ const phoneRegExp = /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -
 
 const initialValues = {
     languages: "Hindi",
-    speciality: "",
-    certificationsId: "",
+    PatientId: "",
     whatsappNo: "",
 }
 
 const checkoutSchema = yup.object().shape({
     languages: yup.string().required("required"),
-    speciality: yup.string().required("required"),
-    certificationsId: yup.string().required("required"),
+    PatienId: yup.string().required("required"),
     whatsappNo: yup.string().matches(phoneRegExp, "Enter Digits Only").required("required"),
 });
 
-const DoctorDetails = () => {
+const PatientDetails = () => {
     const isNonMobile = useMediaQuery("(min-width: 600px)");
 
     const handleFormSubmit = async (values) => {
         console.log(values);
-        const { data } = await httpClint.post('/doctor/details', values).then((res) => {
+        const { data } = await httpClint.post('/patient/details', values).then((res) => {
             window.location = "/";
             console.log(res);
         }).catch((err) => {
@@ -91,31 +89,19 @@ const DoctorDetails = () => {
                             </FormControl>
                         </Box>
                         <Box mb="30px">
-                            <TextField
-                                fullWidth
-                                id="speciality"
-                                name="speciality"
-                                label="Speciality"
-                                variant="outlined"
-                                value={values.speciality}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                error={touched.speciality && Boolean(errors.speciality)}
-                                helperText={touched.speciality && errors.speciality}
-                            />
                         </Box>
                         <Box mb="30px">
                             <TextField
                                 fullWidth
-                                id="certificationsId"
-                                name="certificationsId"
-                                label="Certifications Id"
+                                id="PatienId"
+                                name="PatienId"
+                                label="Paitent Id"
                                 variant="outlined"
-                                value={values.certificationsId}
+                                value={values.PatienId}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                error={touched.certificationsId && Boolean(errors.certificationsId)}
-                                helperText={touched.certificationsId && errors.certificationsId}
+                                error={touched.PatienId && Boolean(errors.PatienId)}
+                                helperText={touched.PatienId && errors.PatienId}
                             />
                         </Box>
                         <Box mb="30px">
@@ -150,4 +136,4 @@ const DoctorDetails = () => {
     );
 };
 
-export default DoctorDetails;
+export default PatientDetails;
