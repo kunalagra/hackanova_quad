@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useTheme, Button } from "@mui/material";
 import CreateMeet from "../createMeet/CreateMeet";
 import { tokens } from "../../theme";
 import { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ import httpClint from "../../httpClint";
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { useNavigate } from "react-router-dom";
 import { borderRadius } from "@mui/system";
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 
 const Dashboard = () => {
     const theme = useTheme();
@@ -158,19 +159,17 @@ const Dashboard = () => {
                                 </Typography>
                             </Box>
                             <Box display="flex" alignItems="center" margin="20px" width="350px">
-                                <button style={{
-                                    backgroundColor:`${colors.blueAccent[600]}`,
-                                    color: `${colors.grey[100]}`,
-                                    padding: "6px 15px",
-                                    borderRadius: "12px",
-                                    border: `2px solid ${colors.blueAccent[900]}`
-                                    }} onClick={() => navigate("/doctordetails")}>
-                                    <Typography variant="h3">
+                                <Button style={{backgroundColor: `${colors.blueAccent[500]}`, color:"white",
+                                padding: "6px 15px",
+                                borderRadius: "10px",
+                                border: `2px solid ${colors.blueAccent[900]}`}} 
+                                    onClick={() => navigate("/doctordetails")}>
+                                    <CreateOutlinedIcon/>
+                                    <Typography sx={{fontSize: "18px", marginLeft:"10px"}}>
                                         Update Profile
-                                    </Typography> 
-                                </button>
+                                    </Typography>
+                                </Button>
                             </Box>
-
                         </Box>
                         <IconButton sx={{display: "flex", justifyContent: "flex-end", alignItems: "center"}} onClick={() => handleFetch()}>
                             <RefreshIcon fontSize="large"/>

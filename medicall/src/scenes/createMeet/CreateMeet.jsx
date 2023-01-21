@@ -1,13 +1,14 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme, Button } from "@mui/material";
 import { tokens } from "../../theme";
-import { mockTransactions } from "../../data/mockData";
 import AddIcon from '@mui/icons-material/Add';
 import Header from "../../Components/Header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
 const CreateMeet = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const navigate = useNavigate();
 
   return (
     <Box m="20px" marginBottom="30px">
@@ -16,6 +17,18 @@ const CreateMeet = () => {
           title="Dashboard"
           subtitle="Track your health!!"
         />
+      </Box>
+      <Box display="flex" alignItems="center" margin="20px" width="350px">
+          <Button style={{backgroundColor: `${colors.blueAccent[500]}`, color:"white",
+          padding: "6px 15px",
+          borderRadius: "10px",
+          border: `2px solid ${colors.blueAccent[900]}`}} 
+              onClick={() => navigate("/patientdetails")}>
+              <PersonOutlinedIcon/>
+              <Typography sx={{fontSize: "18px", marginLeft:"10px"}}>
+                  Update Profile
+              </Typography>
+          </Button>
       </Box>
 
       <Box
