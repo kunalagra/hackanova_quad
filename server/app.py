@@ -177,18 +177,20 @@ def delMeet():
     return jsonify({'message': 'Deleted Meet'}),200
 
 @app.route('/add-pres',methods=['POST'])
+@jwt_required()
 def presCre():
     data = request.get_json()
-    user = doctor.find_one({'email': data['email']})
-    payload = {"pmail": user['pmail'],"pres": data['pres']}
+    user = get_jwt_identity()
+    user = doctor.find_one({'email': user})
+    payload = {"pmail": user['email'],"pres": data['pres']}
     client.get_database('Company').prescription.insert_one(payload)
     return jsonify({'message': 'Prescription Added'}), 200
 
-@app.route('/get-pres',methods=['POST'])
+@app.route('/get-pres',methods=['GET'])
+@jwt_required()
 def getPres ():
-    data = request.get_json()
-    print(data)
-    return json_util.dumps(client.get_database('Company').prescription.find_one({'pmail': data['email']}))
+    user = get_jwt_identity()
+    return json_util.dumps(client.get_database('Company').prescription.find_one({'pmail': user}))
 
 
 
