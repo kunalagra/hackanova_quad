@@ -7,7 +7,7 @@ import Header from "./Header";
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import httpClint from "../httpClint";
-import React, { Component } from 'react';
+import React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';

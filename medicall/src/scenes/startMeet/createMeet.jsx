@@ -1,8 +1,12 @@
 import { JitsiMeeting } from "@jitsi/react-sdk";
+import { Box, TextField } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import httpClint from "../../httpClint";
+import { tokens } from "../../theme";
+import { Formik } from "formik";
+import * as yup from "yup";
 
 const JitsiComponent = () => {
   const apiRef = useRef();
@@ -194,8 +198,17 @@ const JitsiComponent = () => {
     </div>
   );
 
+  const initialValues = {
+    email: localStorage.getItem("email"),
+    prescription: "",
+  };
+
+  const handleFormSubmit = (values) => {
+    console.log(initialValues.email, values)
+  }
+
   return (
-    <>
+    <Box m="20px auto" p="0 20px" minHeight="85vh">
       <h1
         style={{
           fontFamily: "sans-serif",
@@ -217,7 +230,36 @@ const JitsiComponent = () => {
       />
 
       {renderButtons()}
-    </>
+
+      {isDoctor && (
+        <Formik
+          onSubmit={handleFormSubmit}
+          initialValues={initialValues}
+        >
+          {({
+            values,
+            handleChange,
+            handleBlur,
+            handleSubmit
+          }) => (
+            <form onSubmit={handleSubmit}>
+              <Box mb="30px">
+                <TextField
+                  fullWidth
+                  id="prescription"
+                  name="prescription"
+                  label="Prescription"
+                  variant="outlined"
+                  value={values.prescription}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </Box>
+            </form>
+          )}
+        </Formik>
+      )}
+    </Box>
   );
 };
 
