@@ -3,17 +3,18 @@ Quad's Team repo for Hacknova 2.0
 
 We have successfully implemented 
 
-- Video calling Web App
+- Video calling Web App through Whatsapp/Email
 - Disease Prediction Model
 - Patient Dashboard -> Create an Appointment & Recent Transactions
 - Doctor Dashboard -> 
 - Prescription & Invoice after video call
 - Epharmacy 
 - News Section 
-- About Section & FAQ's
+- About & FAQ's section
 
-
-
+Additional Features :
+- Light & Dark Mode Toggle
+- Logout Functionality
 
 # Tech Stack Used
 Front-end:
