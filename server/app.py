@@ -148,11 +148,13 @@ def getNews():
     return json_util.dumps(data[::-1]), 200
 
 @app.route('/gen-meet',methods=['POST'])
+@jwt_required()
 def genMeet():
+    user = get_jwt_identity()
     data = request.get_json()
     t = int(time.time())
     user = doctor.find_one({'email': data['email']})
-    payload = {"meet": str(t),'pmail': data['pmail']}
+    payload = {"meet": str(t),'pmail': user['email']}
     doctor.update_one({'email': user['email']}, {'$set': payload})
     return jsonify({'meet': str(t)}),200
 
