@@ -7,6 +7,6 @@ export default axios.create({
     "Content-type": "application/json",
     "Authorization": "Bearer " + localStorage.getItem("token")
   },
-  baseURL: "http://localhost:5000"
+  baseURL: "https://hackanova-backend.onrender.com"
 });
 
