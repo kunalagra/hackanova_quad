@@ -8,3 +8,4 @@ flask-cors
 flask_pymongo
 flask_jwt_extended
 boto3
+gunicorn
