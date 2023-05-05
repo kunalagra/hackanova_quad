@@ -11,6 +11,7 @@ from bson import json_util
 import secrets
 import time
 from datetime import datetime
+import os
 secret_key = secrets.token_hex(16)
 # example output, secret_key = 000d88cd9d90036ebdd237eb6b0db000
 
@@ -25,8 +26,8 @@ SECRET_KEY = "jkajoisjosk"
 bcrypt = Bcrypt(app)
 CORS(app, supports_credentials=True)
 
-
-client = pymongo.MongoClient("mongodb+srv://Deexith:Deexith@cluster0.w5geufm.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
+DBURL = os.getenv("dburl")
+client = pymongo.MongoClient(DBURL)
 # db = client.get_database('Company').users
 doctor = client.get_database('Company').doctors
 patients = client.get_database('Company').patient
