@@ -1,3 +1,5 @@
+# Refer to https://github.com/kunalagra/GFG_SFI for latest version of the project 
+
 # hackanova_quad
 Quad's Team repo for Hacknova 2.0
 
